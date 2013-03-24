@@ -1,10 +1,12 @@
 package com.spring.login.domain;
 
 import java.util.List;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @SuppressWarnings("unchecked")
 public class User {
 
+	@NotEmpty
 	private String name;
 	private String password;
 	private String gender;

@@ -9,7 +9,9 @@
 </head>
 <body>
 
+
 <form:form method="POST" commandName="user">
+<form:errors path="name"/>
 	<table>
 		<tr>
 			<td>User Name :</td>

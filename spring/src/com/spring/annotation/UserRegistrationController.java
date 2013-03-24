@@ -1,10 +1,11 @@
 package com.spring.annotation;
 
 import java.util.List;
-
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +47,8 @@ public class UserRegistrationController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(@ModelAttribute("user") User user) {
+	public String onSubmit(@Valid @ModelAttribute("user") User user,BindingResult result) {
+		System.out.println("Errrororrrrrrrrrrrrrrrrrr  "+result.hasErrors());
 		userService.add(user);
 		return "redirect:userSuccess.htm";
 	}
