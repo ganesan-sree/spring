@@ -14,10 +14,22 @@ import com.aop.services.CustomerService;
 public class AopController {
 
 	@Autowired
-	CustomerService service;
+	CustomerService customerServiceProxy;
 	@RequestMapping(method = RequestMethod.GET)	
 	public String printWelcome(ModelMap model,Principal principal) {
 		System.out.println("Aoppppppppppppppppppp");
+		
+		System.out.println("*************************");
+		customerServiceProxy.printName();
+		System.out.println("*************************");
+		customerServiceProxy.printURL();
+		System.out.println("*************************");
+		try {
+			customerServiceProxy.printThrowException();
+		} catch (Exception e) {
+
+		}
+
 		return "aop/welcome";
  
 	}

@@ -16,18 +16,26 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<property name="name" value="Yong Mook Kim" />
 		<property name="url" value="http://www.mkyong.com" />
 	</bean>
+	
+	<bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix" value="/jsp/"/>                   
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+	
 
 
 	<bean id="hijackAroundMethodBean" class="com.aop.HijackAroundMethod" />
 
-<!-- 	<bean id="ServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean"> -->
-<!-- 		<property name="target" ref="customerService" /> -->
-<!-- 		<property name="interceptorNames"> -->
-<!-- 			<list> -->
-<!-- 				<value>hijackAroundMethodBean</value> -->
-<!-- 			</list> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="customerService" />
+		<property name="interceptorNames">
+			<list>
+				<value>hijackAroundMethodBean</value>
+			</list>
+		</property>
+	</bean>
 	
 	
 </beans>
