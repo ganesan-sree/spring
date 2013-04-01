@@ -62,12 +62,12 @@
   
   
   	<servlet>
-		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-name>security-dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-name>security-dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
@@ -75,7 +75,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			/WEB-INF/mvc-dispatcher-servlet.xml,
+			/WEB-INF/security-dispatcher-servlet.xml,
 			/WEB-INF/spring-security.xml
 		</param-value>
 	</context-param>
