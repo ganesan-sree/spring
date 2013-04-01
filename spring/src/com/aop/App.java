@@ -9,7 +9,7 @@ import com.aop.services.CustomerService;
 public class App {
 	public static void main(String[] args) {
 		ApplicationContext appContext = new ClassPathXmlApplicationContext(
-				new String[] { "Spring-aop.xml" });
+				new String[] { "aop-servlet.xml" });
 
 		CustomerService cust = (CustomerService) appContext
 				.getBean("customerServiceProxy");
