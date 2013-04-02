@@ -26,14 +26,22 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	
 
 
-	<bean id="hijackAroundMethodBean" class="com.aop.HijackAroundMethod" />
+	<bean id="hijackAroundMethodBean" class="com.aop.HijackAroundMethod"/>	
+	<bean id="hijackAfterMethod" class="com.aop.HijackAfterMethod"/>	
+	<bean id="hijackBeforeMethod" class="com.aop.HijackBeforeMethod"/>	
+	<bean id="hijackThrowException" class="com.aop.HijackThrowException"/>
 
 	<bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="customerService" />
 		<property name="interceptorNames">
+<!-- 			<list> -->
+<!-- 				<value>hijackAroundMethodBean</value> -->
+<!-- 			</list> -->
 			<list>
-				<value>hijackAroundMethodBean</value>
+				<value>hijackBeforeMethod</value>
+				<value>hijackAfterMethod</value>
 			</list>
+
 		</property>
 	</bean>
 	
