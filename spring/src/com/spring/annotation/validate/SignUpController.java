@@ -46,10 +46,8 @@ public class SignUpController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayCustomerForm(ModelMap model) {
-
 		model.addAttribute("customer", new Customer());
 		return "annotation/SignUpForm";
-
 	}
 
 }

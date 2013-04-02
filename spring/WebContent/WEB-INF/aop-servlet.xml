@@ -31,19 +31,52 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="hijackBeforeMethod" class="com.aop.HijackBeforeMethod"/>	
 	<bean id="hijackThrowException" class="com.aop.HijackThrowException"/>
 
-	<bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
-		<property name="target" ref="customerService" />
-		<property name="interceptorNames">
+ 
+<!-- 	<bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean"> -->
+<!-- 		<property name="target" ref="customerService" /> -->
+<!-- 		<property name="interceptorNames"> -->
 <!-- 			<list> -->
 <!-- 				<value>hijackAroundMethodBean</value> -->
 <!-- 			</list> -->
-			<list>
-				<value>hijackBeforeMethod</value>
-				<value>hijackAfterMethod</value>
-			</list>
+<!-- 			<list> -->
+<!-- 				<value>hijackBeforeMethod</value> -->
+<!-- 				<value>hijackAfterMethod</value> -->
+<!-- 			</list> -->
+<!-- 			<list>				 -->
+<!-- 				<value>customerAdvisor</value> -->
+<!-- 			</list> -->
 
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+	
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>*Service</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>customerAdvisor</value>
+			</list>
 		</property>
 	</bean>
 	
+	
+	<!-- Pointcut -->
+	<bean id="customerPointcut" 
+                class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="printName" />
+	</bean>
+ 
+ <!-- Advisor -->
+ 
+	<bean id="customerAdvisor" 
+                 class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="customerPointcut" />
+		<property name="advice" ref="hijackAroundMethodBean" />
+	</bean>
 	
 </beans>

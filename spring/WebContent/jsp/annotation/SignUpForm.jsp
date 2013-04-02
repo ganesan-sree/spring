@@ -19,7 +19,7 @@
 <body>
 	<h2>Customer SignUp Form - JSR303 @Valid example</h2>
 
-	<form:form method="POST" commandName="customer" action="customer/signup">
+	<form:form method="POST" commandName="customer" action="signup">
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>
