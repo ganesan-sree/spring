@@ -2,10 +2,12 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:p="http://www.springframework.org/schema/p"
 xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:aop="http://www.springframework.org/schema/aop"
 xmlns:context="http://www.springframework.org/schema/context"
 xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
@@ -50,19 +52,21 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 <!-- 	</bean> -->
 	
 	
-	<bean
-		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-		<property name="beanNames">
-			<list>
-				<value>*Service</value>
-			</list>
-		</property>
-		<property name="interceptorNames">
-			<list>
-				<value>customerAdvisor</value>
-			</list>
-		</property>
-	</bean>
+		<aop:aspectj-autoproxy />
+	<!-- Equivalent -->
+<!-- 	<bean -->
+<!-- 		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"> -->
+<!-- 		<property name="beanNames"> -->
+<!-- 			<list> -->
+<!-- 				<value>*Service</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 		<property name="interceptorNames"> -->
+<!-- 			<list> -->
+<!-- 				<value>customerAdvisor</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 	
 	
 	<!-- Pointcut -->
@@ -78,5 +82,25 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<property name="pointcut" ref="customerPointcut" />
 		<property name="advice" ref="hijackAroundMethodBean" />
 	</bean>
+	
+	
+	
+	<!-- Aspect -->
+
+
+	<bean id="customerBo" class="com.aop.aspectJ.customer.bo.impl.CustomerBoImpl" />
+	
+	<bean id="logAspect" class="com.aop.aspectJ.LoggingAspect" />
+	
+	
+	<aop:config>
+
+	<aop:aspect id="aspectLoggging" ref="logAspect">
+		<!-- @After -->
+		<aop:pointcut id="pointCutAfter"	expression="execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomer(..))" />
+		<aop:after method="logAfter" pointcut-ref="pointCutAfter" />
+	</aop:aspect>
+
+</aop:config>
 	
 </beans>
