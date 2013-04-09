@@ -76,9 +76,7 @@
 				<classpath refid="compile.classpath" />
 		</javac>-->
 
-		<javac destdir="${build.home}/spring/hibernate" srcdir="${dir.home}/src1">
-				<classpath refid="compile.classpath" />
-		</javac>
+	
 
 	</target>
 
