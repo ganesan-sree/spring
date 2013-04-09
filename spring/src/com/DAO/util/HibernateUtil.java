@@ -18,10 +18,12 @@ public class HibernateUtil {
 	
 	static{
 		try {
+
 //			InitialContext ctx = new InitialContext();
 //			sessionFactory = (SessionFactory) ctx.lookup("java:/hibernate/SessionFactory");
 			Configuration configuration = new Configuration();
 			 sessionFactory = configuration.configure().buildSessionFactory();
+
 		
 		} catch (Exception ex) {
 			ex.printStackTrace();

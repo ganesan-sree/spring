@@ -15,9 +15,13 @@
 		<property name="hibernate.connection.zeroDateTimeBehavior">convertToNull</property>
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
+
 		<property name="ShowSqlEnabled">true</property>				
 <!-- 		<mapping resource="com.bean.UserTest.hbm.xml"/> -->
         	
+
+		<property name="ShowSqlEnabled">true</property>			
+
 	</session-factory>
 </hibernate-configuration>
 

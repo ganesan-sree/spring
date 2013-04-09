@@ -56,6 +56,7 @@
 			</fileset>
 		</copy>
 
+
 		<copy todir="${build.home}/spring/WEB-INF/classes/com/bean">
 				<fileset dir="${dir.home}/src/com/bean">
 					<include name="*.hbm.xml" />
@@ -70,10 +71,17 @@
 		<javac destdir="${build.home}/spring/WEB-INF/classes" srcdir="${dir.home}/src">
 			<classpath refid="compile.classpath" />
 		</javac>
+
 	<!--	<javac destdir="${build.home}/spring/hibernate" srcdir="${dir.home}/src1">
 				<classpath refid="compile.classpath" />
 		</javac>-->
+
+		<javac destdir="${build.home}/spring/hibernate" srcdir="${dir.home}/src1">
+				<classpath refid="compile.classpath" />
+		</javac>
+
 	</target>
+
 
 
 <!--
@@ -87,6 +95,7 @@
 		<delete dir="${build.home}/spring/hibernate"/>
 	</target>
 	-->
+
 
 
 	<target name="warFile" depends="compile">
