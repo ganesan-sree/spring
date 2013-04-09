@@ -32,6 +32,8 @@
 		</copy>
 
 		<mkdir dir="${build.home}/spring/WEB-INF/classes" />
+		<mkdir dir="${build.home}/spring/hibernate" />
+		
 		<copy todir="${build.home}/spring/WEB-INF/classes">
 			<fileset dir="${dir.home}/src/">
 				<include name="*.xml" />
@@ -48,26 +50,42 @@
 			<fileset dir="${dir.home}/src/">
 				<include name="*.properties" />
 			</fileset>
-
 		</copy>
 
+		<copy todir="${build.home}/spring/hibernate/com/bean">
+				<fileset dir="${dir.home}/src1/com/bean">
+					<include name="*.hbm.xml" />
+			</fileset>
+		</copy>
 
 	</target>
 
 
 
 	<target name="compile" depends="copy_files">
-		<javac destdir="${build.home}/spring/WEB-INF/classes" srcdir="${dir.home}">
+		<javac destdir="${build.home}/spring/WEB-INF/classes" srcdir="${dir.home}/src">
 			<classpath refid="compile.classpath" />
 		</javac>
-
+		<javac destdir="${build.home}/spring/hibernate" srcdir="${dir.home}/src1">
+				<classpath refid="compile.classpath" />
+		</javac>
 	</target>
 
 
 
+	<target name="jar" depends="compile">
+		<delete dir="${ear.home}/spring.jar"/>
+		<jar jarfile="${ear.home}/spring.jar">
+			<fileset dir="${build.home}/spring/hibernate">
+				<include name="**/*"/>
+			</fileset>
+		</jar>
+		<delete dir="${build.home}/spring/hibernate"/>
+	</target>
+	
 
 
-	<target name="warFile" depends="compile">
+	<target name="warFile" depends="jar">
 		<delete dir="${dir.home}/spring.war" />
 		<war jarfile="${dir.home}/spring.war">
 			<fileset dir="${build.home}/spring">
@@ -75,9 +93,19 @@
 			</fileset>
 		</war>
 	</target>
+	
+	
+	
+	<target name="ear" depends="warFile">
+				<ear destfile="${dir.home}/spring.ear" appxml="${dir.home}/application.xml">
+					<metainf dir="${build.home}/spring/META-INF/" />
+					<fileset dir="${dir.home}/" includes="*.war,*.jar,lib/*" />
+				</ear>
+			</target>
+		
 
 
-	<target name="deploy" depends="warFile">
+	<target name="deploy" depends="ear">
 		<copy todir="${server.apps}/">
 			<fileset dir="${dir.home}/">
 				<include name="*.war" />
