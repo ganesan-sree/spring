@@ -12,7 +12,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-import com.DAO.BeanInjection;
+import com.dao.BeanInjection;
 
 public class HelloWorldController extends AbstractController {
 
