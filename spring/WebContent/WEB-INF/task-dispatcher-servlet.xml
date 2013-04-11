@@ -21,14 +21,16 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
                 </property>
         </bean>
 
-
+	
 	<bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <property name="prefix" value="/project/"/>                   
         <property name="suffix">
             <value>.jsp</value>
         </property>
     </bean>
+	<!-- DAO -->
 	
+	<bean id="authDao" class="com.dao.AuthDao" />
 
 
 	

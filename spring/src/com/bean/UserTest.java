@@ -1,23 +1,11 @@
 package com.bean;
 
-import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 
-/**
- * This class materializes DB table "user". This provides
- * authentication,registration,personal,tips and etc information about the user.
- * 
- * @version $Id: User.java 17258 2012-09-04 10:38:56Z ganesan $
- * 
- * @author hari,rajesh
- */
 
-public class UserTest implements Serializable {
+public class UserTest  {
 
-	private static final long serialVersionUID = 1L;
-	
-	
+
 	private Integer userId;
 	
 	private Date registeredDate;
@@ -27,11 +15,6 @@ public class UserTest implements Serializable {
 	 * This defines the name of the user
 	 */
 	private String name;
-
-	/**
-	 * This defines the surname of the user
-	 */
-	private String surName;
 
 	/**
 	 * This defines the email of the user
@@ -53,18 +36,6 @@ public class UserTest implements Serializable {
 	 */
 	private String phone;
 
-	
-	private String street;
-
-	/**
-	 * Code of the zip where the user belongs to
-	 */
-	private String zip;
-
-	/**
-	 * Name of the city where the user belongs to
-	 */
-	private String city;
 
 	
 	private String sex;
@@ -118,21 +89,6 @@ public class UserTest implements Serializable {
 		this.name = name;
 	}
 
-	/**
-	 * 
-	 * @return surName
-	 */
-	public String getSurName() {
-		return surName;
-	}
-
-	/**
-	 * 
-	 * @param surName
-	 */
-	public void setSurName(String surName) {
-		this.surName = surName;
-	}
 
 	/**
 	 * 
@@ -197,58 +153,6 @@ public class UserTest implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	
-
-	/**
-	 * 
-	 * @return street
-	 */
-	public String getStreet() {
-		return street;
-	}
-
-	/**
-	 * 
-	 * @param street
-	 */
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	/**
-	 * 
-	 * @return zip
-	 */
-	public String getZip() {
-		return zip;
-	}
-
-	/**
-	 * 
-	 * @param zip
-	 */
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
-
-	/**
-	 * 
-	 * @return city
-	 */
-	public String getCity() {
-		return city;
-	}
-
-	/**
-	 * 
-	 * @param city
-	 */
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	
 
 	/**
 	 * 

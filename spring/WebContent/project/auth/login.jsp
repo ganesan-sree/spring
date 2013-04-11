@@ -272,7 +272,7 @@ fieldset
     </fieldset>
     <fieldset id="actions">
         <input type="submit" id="submit" value="Log in">
-        <a href="getForgotPassword">Forgot your password?</a><a href="getRegistration">Register</a>
+        <a href="forgotPassword">Forgot your password?</a><a href="registration">Register</a>
     </fieldset>    
 </form>
 </body>
