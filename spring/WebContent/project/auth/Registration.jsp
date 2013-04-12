@@ -5,38 +5,54 @@
 <html>
 <head>
 <title>Registration</title>
-<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="../js/registration.js"></script>
+<!-- <script type="text/javascript" src="../js/jquery-1.9.1.js"></script> -->
+<!-- <script type="text/javascript" src="../js/registration.js"></script> -->
+<style>
+.error {
+color: #ff0000;
+font-style: italic;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 	<div align="center" style="width: 100%">
-		<form action="doRegistration" method="post">
+	<form:errors path="*" />
+		<form:form action="doRegistration" method="post" commandName="user">	
+		<form:errors path="*" />	
 			<table>
 				<tr>
 					<td>Name:</td>
-					<td><input type="text" name="name" id="name" /></td>
+					<td><form:input path="name"/></td>
+					<td><form:errors path="name" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>Gender</td>
-					<td><input type="radio" name="gender" id="gender" value="M" /><input
-						type="radio" name="gender" id="gender" value="F" /></td>
+					<td>
+					<form:radiobutton path="sex" value="Male" label="M"  />
+					<form:radiobutton path="sex" value="Female" label="F" />
+					</td>
+					<td><form:errors path="sex" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><input type="text" name="email" id="email" /></td>
+					<td><form:input path="email"/></td>
+					<td><form:errors path="email" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><input type="password" name="password" id="password" /></td>
+					<td><form:password path="password"/></td>
+					<td><form:errors path="password" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>Country</td>
-					<td><input type="text" name="country" id="country" /></td>
+					<td><form:input path="country"/></td>
+					<td><form:errors path="country" cssClass="error"/></td>
 				</tr>
 			</table>
 			<input type="submit" value="Register">
-		</form>
+		</form:form>
 	</div>
+
 </body>
 </html>

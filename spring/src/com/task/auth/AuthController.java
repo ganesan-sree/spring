@@ -10,15 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.ServletContextAware;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.bean.UserTest;
 import com.dao.AuthDao;
+import com.task.auth.validator.RegistrationValidator;
 
 @Controller
 public class AuthController {
@@ -32,11 +31,16 @@ public class AuthController {
 	@Autowired
 	private ServletContext servletContext;
 
+	@Autowired
+	private RegistrationValidator registrationValidator;
+	
+	
 	@RequestMapping(value = "login")
-	public String login() {
+	public String login() {		
 		return "auth/login";
 	}
 	
+	 
 	@RequestMapping(value = "dologin", method = RequestMethod.POST)
 	public ModelAndView list(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -58,19 +62,25 @@ public class AuthController {
 		return new ModelAndView(view,model);
 	}
 
-	@RequestMapping(value = "registration", method = RequestMethod.GET)
-	public String getRegistration() {
+	@RequestMapping(value = "registration")
+	public String getRegistration() {		
+		httpServletRequest.setAttribute("user", new UserTest());	
 		return "auth/Registration";
 	}
 	
+
 	@RequestMapping(value = "doRegistration", method = RequestMethod.POST)
-	public String doRegistration(@RequestParam("email") String email ,BindingResult result) {
-		System.out.println(httpServletRequest.getParameter("name"));		
-		System.out.println(servletContext.getContextPath());
-		System.out.println(email);
-		String view="dashboard";
+
+	public String doRegistration(@ModelAttribute("user") UserTest user,BindingResult result,@RequestParam("email") String email) {		
+		System.out.println("httpServletRequest "+httpServletRequest.getParameter("name"));		
+		System.out.println("servletContext "+servletContext.getContextPath());
+		System.out.println("RequestParam "+email);
+		System.out.println(user);		
+		System.out.println("user object ,commandName,ModelAttribute"+user.getCountry());
+		registrationValidator.validate(user, result);		
+		String view="dashBoard";
 		if (result.hasErrors()) {
-			view ="auth/Registration";
+			view ="forward:registration";
 		} 			
 		return view;
 	}

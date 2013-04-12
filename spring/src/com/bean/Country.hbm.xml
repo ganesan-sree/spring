@@ -3,7 +3,7 @@
   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.easymed.bean.easymed.Country" table="country">
+	<class name="com.bean.Country" table="country">
 	<cache usage="read-only"/>
 		<id name="iso3166" type="string" column="iso3166">
 			<generator class="assigned"/>
