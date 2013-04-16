@@ -25,16 +25,16 @@ public class HelloWorldController extends AbstractController {
 		WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
 		BeanInjection bean = (BeanInjection)context.getBean("beanInjection");		
 		bean.Create();
-					
+		System.out.println(1);
 		WebApplicationContext context1 = ContextLoader.getCurrentWebApplicationContext();		
 		BeanInjection bean1 = (BeanInjection) context1.getBean("beanInjection"); 
 		bean1.Create();
-				
+		System.out.println(2);		
 		// Loading from servlet bean config
 		ClassPathXmlApplicationContext context2 = new ClassPathXmlApplicationContext("applicationContext.xml");
 		BeanInjection bean2 = (BeanInjection) context2.getBean("beanInjection");
 		bean2.Create();
-		
+		System.out.println(3);
 		return new ModelAndView("welcomePage","welcomeMessage", message);
 	}
 

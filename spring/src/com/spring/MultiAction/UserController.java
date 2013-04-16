@@ -6,6 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+// UserController –> /user/*
+// user/add.htm –> add()
+// user/delete.htm –> delete()
+// user/update.htm –> update()
+// user/list.htm –> list()
+
 public class UserController extends MultiActionController{
 	
 	public ModelAndView calladdCustomer(HttpServletRequest request,

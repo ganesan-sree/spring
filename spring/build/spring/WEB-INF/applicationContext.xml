@@ -1,155 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"       
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xmlns:jms="http://www.springframework.org/schema/jms" xmlns:jee="http://www.springframework.org/schema/jee"
-        xsi:schemaLocation="
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jms="http://www.springframework.org/schema/jms" xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
         
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-        <!-- Message Source -->
+	<!-- Message Source -->
 
-<!--         <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> -->
-<!--                 <property name="basenames"> -->
-<!--                         <list> -->
-<!--                                 <value>messages</value> (localized "messages_xx.properties" files) -->
-<!--                         </list> -->
-<!--                 </property> -->
-<!--         </bean> -->
+	<!-- <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> -->
+	<!-- <property name="basenames"> -->
+	<!-- <list> -->
+	<!-- <value>messages</value> (localized "messages_xx.properties" files) -->
+	<!-- </list> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 
+	<import resource="datasource.xml" />
 
-<import resource="datasource.xml"/>
-    
-    
-    
-
-	<bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
-        <property name="prefix" value="/jsp/"/>                   
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-    </bean>
-    
-    
-     <bean id="beanInjection" class="com.dao.BeanInjection" />                              
-        
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/" />
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
 
 
- <!-- ControllerClassNameHandlerMapping -->
-<!--     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"> -->
-<!-- 		<property name="caseSensitive" value="true" /> -->
-<!-- 		<property name="order" value="0"></property> -->
-<!-- 		<property name="pathPrefix" value="/cc" /> -->
-
-<!-- 	</bean> -->
-	
-<!-- 	<bean class="com.spring.WelcomeController" /> -->
-<!-- 	<bean class="com.spring.HelloGuestController" /> -->
-
-
-        <!-- Abstract Default Exception Handler -->
-
-<!--         <bean id="defaultExceptionHandlerTemplate" -->
-<!--                 class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver" abstract="true"> -->
-<!--                 <property name="defaultErrorView" value="defError" /> -->
-<!--                 <property name="exceptionMappings"> -->
-<!--                         <props> -->
-<!--                                 <prop key="javax.portlet.PortletSecurityException">notAuthorized</prop> -->
-<!--                                 <prop key="javax.portlet.UnavailableException">notAvailable</prop> -->
-<!--                         </props> -->
-<!--                 </property> -->
-<!--         </bean> -->
-
-        <!-- Spring Security Authentication Manager -->
-
-<!--         <sec:authentication-manager alias="authenticationManager" /> -->
-
-<!--         <bean id="portletAuthenticationProvider" -->
-<!--                 class="org.springframework.security.providers.preauth.PreAuthenticatedAuthenticationProvider"> -->
-<!--                 <sec:custom-authentication-provider /> -->
-<!--                 <property name="preAuthenticatedUserDetailsService"> -->
-<!--                         <bean class="org.springframework.security.providers.preauth.PreAuthenticatedGrantedAuthoritiesUserDetailsService" /> -->
-<!--                 </property> -->
-<!--         </bean> -->
-
-        <!-- Spring Security Portlet Request Interceptors -->
-
-<!--         <bean id="portletSessionContextIntegrationInterceptor" -->
-<!--                 class="org.springframework.security.context.PortletSessionContextIntegrationInterceptor" /> -->
-
-<!--         <bean id="portletProcessingInterceptor" -->
-<!--                 class="org.springframework.security.ui.portlet.PortletProcessingInterceptor"> -->
-<!--                 <property name="authenticationManager" ref="authenticationManager" /> -->
-<!--                 <property name="authenticationDetailsSource"> -->
-<!--                         <bean class="org.springframework.security.ui.portlet.PortletPreAuthenticatedAuthenticationDetailsSource"> -->
-<!--                                 <property name="mappableRolesRetriever"> -->
-<!--                                         <bean class="org.springframework.security.authoritymapping.SimpleMappableAttributesRetriever"> -->
-<!--                                                 <property name="mappableAttributes"> -->
-<!--                                                         <list> -->
-<!--                                                                 <value>ADMINISTRATOR</value> -->
-<!--                                                         </list> -->
-<!--                                                 </property> -->
-<!--                                         </bean> -->
-<!--                                 </property> -->
-<!--                         </bean> -->
-<!--                 </property> -->
-<!--                 <property name="useAuthTypeAsCredentials" value="true" /> -->
-<!--         </bean> -->
-
-        <!-- Spring Security Servlet Request Filters -->
-
-<!--         <bean id="servletSecurityFilterChainProxy" class="org.springframework.security.util.FilterChainProxy"> -->
-<!--                 <sec:filter-chain-map path-type="ant"> -->
-<!--                         <sec:filter-chain pattern="/**" -->
-<!--                                 filters="httpSessionContextIntegrationFilter,exceptionTranslationFilter,filterSecurityInterceptor" /> -->
-<!--                 </sec:filter-chain-map> -->
-<!--         </bean> -->
-
-<!--         <bean id="httpSessionContextIntegrationFilter" -->
-<!--                 class="org.springframework.security.context.HttpSessionContextIntegrationFilter" /> -->
-
-<!--         <bean id="exceptionTranslationFilter" class="org.springframework.security.ui.ExceptionTranslationFilter"> -->
-<!--                 <property name="authenticationEntryPoint"> -->
-<!--                         <bean class="org.springframework.security.ui.preauth.PreAuthenticatedProcessingFilterEntryPoint" /> -->
-<!--                 </property> -->
-<!--         </bean> -->
-
-<!--         <bean id="filterSecurityInterceptor" class="org.springframework.security.intercept.web.FilterSecurityInterceptor"> -->
-<!--                 <property name="authenticationManager" ref="authenticationManager" /> -->
-<!--                 <property name="accessDecisionManager" ref="accessDecisionManager" /> -->
-<!--                 <property name="objectDefinitionSource"> -->
-<!--                         <sec:filter-invocation-definition-source> -->
-<!--                                 <sec:intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_FULLY" /> -->
-<!--                         </sec:filter-invocation-definition-source> -->
-<!--                 </property> -->
-<!--         </bean> -->
-
-<!--         <bean id="accessDecisionManager" class="org.springframework.security.vote.AffirmativeBased"> -->
-<!--                 <property name="allowIfAllAbstainDecisions" value="false" /> -->
-<!--                 <property name="decisionVoters"> -->
-<!--                         <list> -->
-<!--                                 <bean class="org.springframework.security.vote.RoleVoter" /> -->
-<!--                                 <bean class="org.springframework.security.vote.AuthenticatedVoter" /> -->
-<!--                         </list> -->
-<!--                 </property> -->
-<!--         </bean> -->
-
-        <!-- Domain Services -->
-
-<!--         <bean id="bookService" class="sample.service.BookServiceImpl"> -->
-<!--                 <sec:intercept-methods access-decision-manager-ref="accessDecisionManager"> -->
-<!--                         <sec:protect method="sample.service.BookService.*" access="IS_AUTHENTICATED_FULLY" /> -->
-<!--                         <sec:protect method="sample.service.BookService.get*" access="IS_AUTHENTICATED_FULLY" /> -->
-<!--                         <sec:protect method="sample.service.BookService.add*" access="ROLE_ADMINISTRATOR" /> -->
-<!--                         <sec:protect method="sample.service.BookService.delete*" access="ROLE_ADMINISTRATOR" /> -->
-<!--                         <sec:protect method="sample.service.BookService.save*" access="ROLE_ADMINISTRATOR" /> -->
-<!--                 </sec:intercept-methods> -->
-<!--         </bean> -->
-
-        <!-- Domain Object Validators -->
-
-<!--         <bean id="bookValidator" class="sample.domain.BookValidator" /> -->
+	<bean id="beanInjection"  class="com.dao.BeanInjection"  />
 
 </beans>

@@ -5,9 +5,9 @@
 
 	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
     
-    <bean class="com.AbstractWizardFormController.controller.WelcomeController" />
+    <bean name="welcome-abs.htm" class="com.AbstractWizardFormController.controller.WelcomeController" />
     
-    <bean class="com.AbstractWizardFormController.controller.UserController" >
+    <bean name ="user.htm" class="com.AbstractWizardFormController.controller.UserController" >
     	<property name="pages">
 			<list>
 			<!-- follow sequence -->
