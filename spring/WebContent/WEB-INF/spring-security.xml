@@ -8,15 +8,22 @@
 
 	<http auto-config="true">
 		<intercept-url pattern="/security" access="ROLE_USER" />
-		<form-login login-page="/login" default-target-url="/security"
+		<intercept-url pattern="/admin" access="ROLE_ADMIN" />		
+		<form-login login-page="/login" default-target-url="/security" 
 			authentication-failure-url="/loginfailed" />
 		<logout logout-success-url="/logout" />
+		
+<!-- 		<access-denied-handler error-page="404"/>		 -->
 	</http>
+	
+	
 
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
 				<user name="ganesan" password="bbbbbb" authorities="ROLE_USER" />
+				<user name="easymed" password="bbbbbb" authorities="ROLE_USER" />
+				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

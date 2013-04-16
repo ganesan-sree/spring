@@ -6,7 +6,12 @@
   </listener>
   
   
-    <!-- Spring Security http://192.168.1.230:8080/spring/login-->
+    <!-- Spring Security 
+    http://192.168.1.230:8080/spring/login
+    http://192.168.1.230:8080/spring/admin
+    http://192.168.1.230:8080/spring/j_spring_security_check
+    http://192.168.1.230:8080/spring/j_spring_security_logout
+    -->
   
   	<servlet>
 		<servlet-name>security-dispatcher</servlet-name>

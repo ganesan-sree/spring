@@ -5,6 +5,49 @@
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
+  
+    <!-- Spring Security 
+    http://192.168.1.230:8080/spring/login
+    http://192.168.1.230:8080/spring/admin
+    http://192.168.1.230:8080/spring/j_spring_security_check
+    http://192.168.1.230:8080/spring/j_spring_security_logout
+    -->
+  
+  	<servlet>
+		<servlet-name>security-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>security-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+<!-- 			/WEB-INF/security-dispatcher-servlet.xml, -->
+			/WEB-INF/spring-security.xml
+			<!-- Below applicationContext.xm should be mention for initiating,otherwise it wont start 
+			(its applicable only when we use context-param 'contextConfigLocation' )-->
+			/WEB-INF/applicationContext.xml 
+		</param-value>
+	</context-param>
+	
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+  
+  
+  
+  
   <!-- http://192.168.1.230:8080/spring/ganesan/welcome.htm ,http://192.168.1.230:8080/spring/ganesan//process1111.htm
   ,http://192.168.1.230:8080/spring/ganesan//userRegistration.htm-->
   <servlet>
@@ -53,36 +96,7 @@
     <url-pattern>/abs/wiz/*</url-pattern>
   </servlet-mapping>
 
-  <!-- Spring Security http://192.168.1.230:8080/spring/login-->
-  
-  	<servlet>
-		<servlet-name>security-dispatcher</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>security-dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
 
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-<!-- 			/WEB-INF/security-dispatcher-servlet.xml, -->
-			/WEB-INF/spring-security.xml
-			/WEB-INF/applicationContext.xml
-		</param-value>
-	</context-param>
-	
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
   
   <!-- AOP   http://192.168.1.230:8080/spring/aop/controller,http://192.168.1.230:8080/spring/aop/aspectJcontroller  -->
   <servlet>
