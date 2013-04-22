@@ -14,7 +14,7 @@ public class UserTest  {
 	/**
 	 * This defines the name of the user
 	 */
-	private String name;
+	private String username;
 
 	/**
 	 * This defines the email of the user
@@ -72,23 +72,6 @@ public class UserTest  {
 	}
 
 	
-
-	/**
-	 * 
-	 * @return name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
 
 	/**
 	 * 
@@ -170,34 +153,13 @@ public class UserTest  {
 		this.sex = sex;
 	}
 
-
-	
-
-	
-
-	
-
-
-	/**
-	 * Compare two object for equality
-	 * 
-	 * @param obj
-	 *            the object to be compared.
-	 * @return <code> true </code> if two objects are equal;
-	 *         <code> false </code> otherwise
-	 */
-	public boolean equals(UserTest obj) {	
-		return this.getUserId().equals(obj.getUserId());
+	public String getUsername() {
+		return username;
 	}
 
-
-	@Override
-	public int hashCode() {
-		if (this.userId != null) {
-			return (this.userId).hashCode();
-		} else {
-			return super.hashCode();
-		}
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
 	
 }

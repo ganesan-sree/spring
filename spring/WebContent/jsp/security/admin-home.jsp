@@ -12,5 +12,7 @@
 	<a href=<c:url value='/j_spring_security_logout'/>>Logout</a>
 	<br />	
 	<h1>Welcome</h1>
+	
+	<h2> <sec:authentication property="principal.username"/></h2>
 </body>
 </html>

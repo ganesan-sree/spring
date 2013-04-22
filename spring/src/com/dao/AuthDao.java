@@ -17,8 +17,27 @@ public class AuthDao {
 		c.add(Restrictions.eq("email", user.getEmail()));
 		c.add(Restrictions.eq("password", user.getPassword()));
 		List<UserTest> list = c.list();
-		if (list.size() > 0)
+		if (list.size() > 0){
+			tx.commit();
 			return list.get(0);
+		}
+		tx.commit();
+		session.clear();
+		session.flush();
+		return null;
+	}
+	
+	
+	public UserTest findByUsername(String  userName) {
+		Session session = SpringintegrationHibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		Criteria c = session.createCriteria(UserTest.class);
+		c.add(Restrictions.eq("username", userName));		
+		List<UserTest> list = c.list();
+		if (list.size() > 0)	{
+			tx.commit();
+			return list.get(0);	
+		}
 		tx.commit();
 		session.clear();
 		session.flush();

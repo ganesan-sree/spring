@@ -8,7 +8,7 @@
                         <generator class="native" />
                 </id>               
                 <property name="registeredDate" type="java.util.Date" column="registeredDate" />                       
-                <property name="name" type="string" column="name" length="255" />                
+                <property name="username" type="string" column="username" length="255" />                
                 <property name="email" type="string" column="email" length="255" />
                 <property name="password" type="string" column="password" length="40" />
                 <property name="country" type="string" column="country" length="2" />

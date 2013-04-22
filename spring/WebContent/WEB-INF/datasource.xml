@@ -19,6 +19,15 @@
 		<property name="username" value="db2inst1"></property>
 		<property name="password" value="123456"></property>
 	</bean>
+	
+	<bean id="sqlDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName"  value="com.ibm.db2.jcc.DB2Driver"></property>
+		<property name="url" value="jdbc:db2://192.168.1.6:50000/easymed"></property>
+		<property name="username" value="db2inst1"></property>
+		<property name="password" value="123456"></property>
+	</bean>
+	
 	<jee:jndi-lookup id="database" jndi-name="java:/MySqlDS"/>
 	<bean id="mysessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
