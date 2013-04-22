@@ -25,12 +25,13 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
+		<param-value>		
 <!-- 			/WEB-INF/security-dispatcher-servlet.xml, -->
-			/WEB-INF/spring-security.xml
+<!-- 			/WEB-INF/spring-security.xml -->
 			<!-- Below applicationContext.xm should be mention for initiating,otherwise it wont start 
 			(its applicable only when we use context-param 'contextConfigLocation' )-->
 			/WEB-INF/applicationContext.xml 
+			/WEB-INF/spring-acl-security.xml
 		</param-value>
 	</context-param>
 	
