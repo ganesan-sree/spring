@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,13 +27,13 @@ public class AllController {
         
 	protected static Logger logger = Logger.getLogger("controller");
 
-	//@Resource(name="adminService")
+	@Autowired
 	private AdminService adminService;
 	
-	//@Resource(name="personalService")
+	@Autowired
 	private PersonalService personalService;
 	
-	//@Resource(name="publicService")
+	@Autowired
 	private PublicService publicService;
 	
 	/**
@@ -54,6 +55,6 @@ public class AllController {
     	model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
     	
     	// This will resolve to /WEB-INF/jsp/bulletinpage.jsp
-    	return "bulletinpage";
+    	return "acl/bulletinpage";
 	}
 }

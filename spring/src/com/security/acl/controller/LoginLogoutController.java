@@ -37,7 +37,7 @@ public class LoginLogoutController {
 		}
 		
 		// This will resolve to /WEB-INF/jsp/loginpage.jsp
-		return "loginpage";
+		return "acl/loginpage";
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class LoginLogoutController {
 		logger.debug("Received request to show denied page");
 		
 		// This will resolve to /WEB-INF/jsp/deniedpage.jsp
-		return "deniedpage";
+		return "acl/deniedpage";
 	}
 
 }

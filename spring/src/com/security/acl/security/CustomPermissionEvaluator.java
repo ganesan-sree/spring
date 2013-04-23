@@ -2,9 +2,11 @@ package com.security.acl.security;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.core.Authentication;
@@ -21,10 +23,10 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
         
 	protected static Logger logger = Logger.getLogger("security");
 
-	//@Resource(name="permissionsMap")
-	private Map permissionsMap;
 	
-	//@Resource(name="roleHierarchy")
+	private HashMap<String,Object> permissionsMap;
+	
+	
 	private RoleHierarchy roleHierarchy;
 	
 	/**
@@ -115,4 +117,24 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 		logger.debug("Permission Denied!");
 		return false;
 	}
+
+	public HashMap<String, Object> getPermissionsMap() {
+		return permissionsMap;
+	}
+
+	public void setPermissionsMap(HashMap<String, Object> permissionsMap) {
+		this.permissionsMap = permissionsMap;
+	}
+
+	public RoleHierarchy getRoleHierarchy() {
+		return roleHierarchy;
+	}
+
+	public void setRoleHierarchy(RoleHierarchy roleHierarchy) {
+		this.roleHierarchy = roleHierarchy;
+	}
+	
+	
+	
+	
 }

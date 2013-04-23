@@ -23,8 +23,8 @@ public class AclAdminController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
-	//@Resource(name="adminService")
-	//@Autowired
+	
+	@Autowired
 	private AdminService adminService;
 
     /**
@@ -105,6 +105,6 @@ public class AclAdminController {
     	model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
     	
     	// This will resolve to /WEB-INF/jsp/resultpage.jsp
-    	return "resultpage";
+    	return "acl/resultpage";
 	}
 }

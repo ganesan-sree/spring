@@ -17,8 +17,9 @@
 	<!-- </list> -->
 	<!-- </property> -->
 	<!-- </bean> -->
-	<import resource="acl-context.xml" />
+	
 
+	
 	<import resource="datasource.xml" />
 
 	<bean id="viewResolver"
@@ -38,12 +39,7 @@
 <!-- 	<bean id ="adminService" class="com.security.acl.service.AdminService"></bean> -->
 <!-- 	<bean id ="publicService" class="com.security.acl.service.PublicService"></bean> -->
 
-	<!-- Activates various annotations to be detected in bean classes -->
-<!-- 	<context:annotation-config /> -->
-	
-	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans.
-	 For example @Controller and @Service. Make sure to set the correct base-package-->
-<!-- 	<context:component-scan base-package="com.security.acl" /> -->
+
 	
 
 

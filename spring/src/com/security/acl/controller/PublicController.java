@@ -2,6 +2,7 @@ package com.security.acl.controller;
 
 import org.apache.log4j.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ public class PublicController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
-	//@Resource(name="publicService")
+	@Autowired
 	private PublicService publicService;
     
     /**
@@ -49,7 +50,7 @@ public class PublicController {
     	model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
     	
     	// This will resolve to /WEB-INF/jsp/resultpage.jsp
-    	return "resultpage";
+    	return "acl/resultpage";
 	}
     
     /**
@@ -76,7 +77,7 @@ public class PublicController {
     	model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
     	
     	// This will resolve to /WEB-INF/jsp/resultpage.jsp
-    	return "resultpage";
+    	return "acl/resultpage";
 	}
     
     /**
@@ -103,6 +104,6 @@ public class PublicController {
     	model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
     	
     	// This will resolve to /WEB-INF/jsp/resultpage.jsp
-    	return "resultpage";
+    	return "acl/resultpage";
 	}
 }

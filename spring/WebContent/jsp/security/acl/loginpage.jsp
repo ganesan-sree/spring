@@ -16,7 +16,7 @@
 
 <div id="login-error">${error}</div>
 
-<form action="../../j_spring_security_check" method="post" >
+<form action="../j_spring_security_check" method="post" >
 
 <p>
 	<label for="j_username">Username</label>

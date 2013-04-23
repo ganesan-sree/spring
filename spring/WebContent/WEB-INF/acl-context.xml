@@ -9,7 +9,7 @@
 			http://www.springframework.org/schema/util/spring-util-3.0.xsd">
     
     <!-- Declare a simple map containing all our roles -->	
-    <util:map id="permissionsMap">
+    <util:map id="permissionsMap" key-type="java.lang.String" value-type="java.lang.Object">
 	    <entry key="ROLE_ADMIN" value-ref="admin"/>
 	    <entry key="ROLE_USER" value-ref="user"/>
 	    <entry key="ROLE_VISITOR" value-ref="visitor"/>
