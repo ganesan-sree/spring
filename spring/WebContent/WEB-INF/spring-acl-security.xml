@@ -3,25 +3,35 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:security="http://www.springframework.org/schema/security"
      xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	   		 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	   		 http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 			http://www.springframework.org/schema/security 
 			http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-
+<!-- Activates various annotations to be detected in bean classes -->
+	<context:annotation-config />
+	
+	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans.
+	 For example @Controller and @Service. Make sure to set the correct base-package-->
+	<context:component-scan base-package="com.security.acl" />
+	
+	<!-- Configures the annotation-driven Spring MVC Controller programming model.
+	Note that, with Spring 3.0, this tag works in Servlet MVC only!  -->
+	<mvc:annotation-driven /> 
+	
+	<!-- Loads ACL related configurations -->
 	<import resource="acl-context.xml" />
-			<context:annotation-config />
-	
-		<context:component-scan base-package="com.security.acl" />
-		
-	
-	
+
+
 	<!-- To enable Method Security Expressions and custom PermissionEvaluator
-		we need to add the following -->
-	<security:global-method-security pre-post-annotations="enabled">
+		we need to add the following -->	
+		<security:global-method-security pre-post-annotations="enabled">
 		<security:expression-handler ref="expressionHandler" />
-	</security:global-method-security>
+		</security:global-method-security>	
 
 	<!-- To use hasPermission() expressions, we have to configure a PermissionEvaluator -->
 	<!-- See 15.3.2 Built-In Expression 
@@ -39,20 +49,16 @@
 	</bean>
   
 	<!-- This is where we configure Spring-Security  -->
-	<security:http auto-config="true" use-expressions="true" access-denied-page="/auth/denied" >
-	
-		<security:intercept-url pattern="/auth/login" access="permitAll"/>
-		
+	<security:http auto-config="true" use-expressions="true" access-denied-page="/auth/denied" >	
+		<security:intercept-url pattern="/auth/login" access="permitAll"/>		
 		<security:form-login
 				login-page="/auth/login" 
 				authentication-failure-url="/auth/login?error=true" 
-				default-target-url="/all/view"/>
-			
+				default-target-url="/all/view"/>			
 		<security:logout 
 				invalidate-session="true" 
 				logout-success-url="/auth/login" 
-				logout-url="/auth/logout"/>
-	
+				logout-url="/auth/logout"/>	
 	</security:http>
 	
 	<!-- Declare an authentication-manager to use a custom userDetailsService -->

@@ -24,7 +24,7 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 	protected static Logger logger = Logger.getLogger("security");
 
 	
-	private HashMap<String,Object> permissionsMap;
+	private Map permissionsMap;
 	
 	
 	private RoleHierarchy roleHierarchy;
@@ -35,21 +35,21 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 	 */
 	public boolean hasPermission(Authentication authentication,
 			Object targetDomainObject, Object permission) {
-		logger.debug("Evaluating expression using hasPermission signature #1");
+		System.out.println("Evaluating expression using hasPermission signature #1");
 		
-		logger.debug("Retrieving user's highest role");
+		System.out.println("Retrieving user's highest role");
 		String role = getRole(authentication);
 
-		logger.debug("****************");
-		logger.debug("role: " + role);
-		logger.debug("targetDomainObject: " + targetDomainObject);
-		logger.debug("permission: " + permission);
-		logger.debug("****************");
+		System.out.println("****************");
+		System.out.println("role: " + role);
+		System.out.println("targetDomainObject: " + targetDomainObject);
+		System.out.println("permission: " + permission);
+		System.out.println("****************");
 	
 		// Check the type of object
-		logger.debug("User is trying to access the object: " + targetDomainObject);
+		System.out.println("User is trying to access the object: " + targetDomainObject);
 
-		logger.debug("Check if user has permission");
+		System.out.println("Check if user has permission");
 		// Delegate to another hasPermission signature
 		return hasPermission(role, permission, targetDomainObject);
 	}
@@ -59,7 +59,7 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 	 */
 	public boolean hasPermission(Authentication authentication,
 			Serializable targetId, String targetType, Object permission) {
-		logger.debug("Evaluating expression using hasPermission signature #2");
+		System.out.println("Evaluating expression using hasPermission signature #2");
 
 		return false;
 	}
@@ -76,10 +76,10 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 				highestRole = auth.getAuthority();
 				break;
 			}
-			logger.debug("Highest role hiearchy: " + roleHierarchy.getReachableGrantedAuthorities(authentication.getAuthorities()));
+			System.out.println("Highest role hiearchy: " + roleHierarchy.getReachableGrantedAuthorities(authentication.getAuthorities()));
 			
 		} catch (Exception e) {
-			logger.debug("No authorities assigned");
+			System.out.println("No authorities assigned");
 		}
 		
 		return highestRole;
@@ -89,24 +89,24 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 	 * Evaluates whether the user has permission
 	 */
 	private Boolean hasPermission(String role, Object permission, Object domain) {
-		logger.debug("Check if role exists: " + role);
+		System.out.println("Check if role exists: " + role);
 		if ( permissionsMap.containsKey(role) ) {
-			logger.debug("Role exists: " + role);
+			System.out.println("Role exists: " + role);
 			
 			// Retrieve userPermission object
 			Permission userPermission = (Permission) permissionsMap.get(role);
 			
 			// Check if domain exists in Map
-			logger.debug("Check if domain exists: " + domain.getClass().getName());
+			System.out.println("Check if domain exists: " + domain.getClass().getName());
 			if ( userPermission.getObjects().containsKey(domain.getClass().getName())){
-				logger.debug("Domain exists: " + domain.getClass().getName());
+				System.out.println("Domain exists: " + domain.getClass().getName());
 
 				// Loop the internal list and see if the class' full name matches
-				logger.debug("Check if permission exists: " + permission);
+				System.out.println("Check if permission exists: " + permission);
 				for (String action: userPermission.getObjects().get(domain.getClass().getName()) ) {
 					if (action.equals(permission)) {
-						logger.debug("Permission exists: " + action);
-						logger.debug("Permission Granted!");
+						System.out.println("Permission exists: " + action);
+						System.out.println("Permission Granted!");
 						return true;
 					}
 				}
@@ -114,15 +114,17 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 		}
 		
 		// By default, do not give permission
-		logger.debug("Permission Denied!");
+		System.out.println("Permission Denied!");
 		return false;
 	}
 
-	public HashMap<String, Object> getPermissionsMap() {
+	
+
+	public Map getPermissionsMap() {
 		return permissionsMap;
 	}
 
-	public void setPermissionsMap(HashMap<String, Object> permissionsMap) {
+	public void setPermissionsMap(Map permissionsMap) {
 		this.permissionsMap = permissionsMap;
 	}
 

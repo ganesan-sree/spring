@@ -43,7 +43,7 @@ public class AllController {
 	 */
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public String getViewAllPage(Model model) {
-    	logger.debug("Received request to view all page");
+    	System.out.println("Received request to view all page");
     
     	// Retrieve items from service and add to model
     	model.addAttribute("adminposts", adminService.getAll());

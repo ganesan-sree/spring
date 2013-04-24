@@ -31,7 +31,7 @@ public class PublicController {
      */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String getEditPage(Model model) {
-    	logger.debug("Received request to view edit page");
+    	System.out.println("Public >>>>> Received request to view edit page");
     
     	// Call service. If true, we have appropriate authority
     	if (publicService.edit(new PublicPost()) == true) {
@@ -58,7 +58,7 @@ public class PublicController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAddPage(Model model) {
-    	logger.debug("Received request to view add page");
+    	System.out.println("Public >>>>>  Received request to view add page");
     
     	// Call service. If true, we have appropriate authority
     	if (publicService.add(new PublicPost()) == true) {
@@ -85,7 +85,7 @@ public class PublicController {
      */
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String getDeletePage(Model model) {
-    	logger.debug("Received request to view delete page");
+    	System.out.println("Public >>>>>  Received request to view delete page");
     
     	// Call service. If true, we have appropriate authority
     	if (publicService.delete(new PublicPost()) == true) {

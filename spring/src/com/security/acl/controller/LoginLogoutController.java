@@ -25,7 +25,7 @@ public class LoginLogoutController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 
 			ModelMap model) {
-		logger.debug("Received request to show login page");
+		System.out.println("Received request to show login page");
 
 		// Add an error message to the model if login is unsuccessful
 		if (error == true) {
@@ -48,7 +48,7 @@ public class LoginLogoutController {
 	 */
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
  	public String getDeniedPage() {
-		logger.debug("Received request to show denied page");
+		System.out.println("Received request to show denied page");
 		
 		// This will resolve to /WEB-INF/jsp/deniedpage.jsp
 		return "acl/deniedpage";

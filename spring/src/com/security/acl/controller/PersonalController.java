@@ -31,7 +31,7 @@ public class PersonalController {
      */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String getEditPage(Model model) {
-    	logger.debug("Received request to view edit page");
+    	System.out.println("Personal >>>>> Received request to view edit page");
     
     	// Call service. If true, we have appropriate authority
     	if (personalService.edit(new PersonalPost()) == true) {
@@ -49,7 +49,7 @@ public class PersonalController {
     	model.addAttribute("role", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
     	model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
     	
-    	// This will resolve to /WEB-INF/jsp/resultpage.jsp
+    	
     	return "acl/resultpage";
 	}
     
@@ -58,7 +58,7 @@ public class PersonalController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAddPage(Model model) {
-    	logger.debug("Received request to view add page");
+    	System.out.println("Personal >>>>> Received request to view add page");
     
     	// Call service. If true, we have appropriate authority
     	if (personalService.add(new PersonalPost()) == true) {
@@ -85,7 +85,7 @@ public class PersonalController {
      */
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String getDeletePage(Model model) {
-    	logger.debug("Received request to view delete page");
+    	System.out.println("Personal >>>>> Received request to view delete page");
     
     	// Call service. If true, we have appropriate authority
     	if (personalService.delete(new PersonalPost()) == true) {

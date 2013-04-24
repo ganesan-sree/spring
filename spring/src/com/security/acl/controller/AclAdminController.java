@@ -32,7 +32,7 @@ public class AclAdminController {
      */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String getEditPage(Model model) {
-    	logger.debug("Received request to view edit page");
+    	System.out.println("Admin >>>>> Received request to view edit page");
     
     	// Call service. If true, we have appropriate authority
     	if (adminService.edit(new AdminPost()) == true) {
@@ -51,7 +51,7 @@ public class AclAdminController {
     	model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
     	
     	// This will resolve to /WEB-INF/jsp/resultpage.jsp
-    	return "resultpage";
+    	return "acl/resultpage";
 	}
     
     /**
@@ -59,7 +59,7 @@ public class AclAdminController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAddPage(Model model) {
-    	logger.debug("Received request to view add page");
+    	System.out.println("Admin >>>>>  Received request to view add page");
     
     	// Call service. If true, we have appropriate authority
     	if (adminService.add(new AdminPost()) == true) {
@@ -78,7 +78,7 @@ public class AclAdminController {
     	model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
     	
     	// This will resolve to /WEB-INF/jsp/resultpage.jsp
-    	return "resultpage";
+    	return "acl/resultpage";
 	}
     
     /**
@@ -86,7 +86,7 @@ public class AclAdminController {
      */
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String getDeletePage(Model model) {
-    	logger.debug("Received request to view delete page");
+    	System.out.println("Admin >>>>>  Received request to view delete page");
     
     	// Call service. If true, we have appropriate authority
     	if (adminService.delete(new AdminPost()) == true) {

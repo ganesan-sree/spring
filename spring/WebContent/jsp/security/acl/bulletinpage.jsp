@@ -19,10 +19,10 @@
 <hr/>
 
 <div style="width: 600px" >
-	<c:url var="viewUrl" value="/krams/all/view" />
-	<c:url var="addUrl" value="/krams/admin/add" />
-	<c:url var="editUrl" value="/krams/admin/edit" />
-	<c:url var="delUrl" value="/krams/admin/delete" />
+	<c:url var="viewUrl" value="/all/view" />
+	<c:url var="addUrl" value="/admin/add" />
+	<c:url var="editUrl" value="/admin/edit" />
+	<c:url var="delUrl" value="/admin/delete" />
 	
 	<div style="float:left; width: 100px" >
 		<span style="margin-left:10px;">Controls</span>
@@ -46,9 +46,9 @@
 			</thead>
 			<tbody>
 			<c:forEach items="${adminposts}" var="post">
-					<c:url var="editUrl" value="/krams/admin/edit" />
-					<c:url var="deleteUrl" value="/krams/admin/delete" />
-					<c:url var="addUrl" value="/krams/admin/add" />
+					<c:url var="editUrl" value="/admin/edit" />
+					<c:url var="deleteUrl" value="/admin/delete" />
+					<c:url var="addUrl" value="/admin/add" />
 				<tr>
 					<td><c:out value="${post.date}" /></td>
 					<td><c:out value="${post.message}" /></td>
@@ -66,10 +66,10 @@
 <div><hr/></div>
 
 <div style="width: 600px" >
-	<c:url var="viewUrl" value="/krams/all/view" />
-	<c:url var="addUrl" value="/krams/personal/add" />
-	<c:url var="editUrl" value="/krams/personal/edit" />
-	<c:url var="delUrl" value="/krams/personal/delete" />
+	<c:url var="viewUrl" value="/all/view" />
+	<c:url var="addUrl" value="/personal/add" />
+	<c:url var="editUrl" value="/personal/edit" />
+	<c:url var="delUrl" value="/personal/delete" />
 	
 	<div style="float:left; width: 100px">
 		<span style="margin-left:10px;">Controls</span>
@@ -93,9 +93,9 @@
 			</thead>
 			<tbody>
 			<c:forEach items="${personalposts}" var="post">
-					<c:url var="editUrl" value="/krams/personal/edit" />
-					<c:url var="deleteUrl" value="/krams/personal/delete" />
-					<c:url var="addUrl" value="/krams/personal/add" />
+					<c:url var="editUrl" value="/personal/edit" />
+					<c:url var="deleteUrl" value="/personal/delete" />
+					<c:url var="addUrl" value="/personal/add" />
 				<tr>
 					<td><c:out value="${post.date}" /></td>
 					<td><c:out value="${post.message}" /></td>
@@ -114,10 +114,10 @@
 <div><hr/></div>
 
 <div style="width: 600px" >
-	<c:url var="viewUrl" value="/krams/all/view" />
-	<c:url var="addUrl" value="/krams/public/add" />
-	<c:url var="editUrl" value="/krams/public/edit" />
-	<c:url var="delUrl" value="/krams/public/delete" />
+	<c:url var="viewUrl" value="/all/view" />
+	<c:url var="addUrl" value="/public/add" />
+	<c:url var="editUrl" value="/public/edit" />
+	<c:url var="delUrl" value="/public/delete" />
 	
 	<div style="float:left; width: 100px">
 			<span style="margin-left:10px;">Controls</span>
@@ -141,9 +141,9 @@
 		</thead>
 		<tbody>
 		<c:forEach items="${publicposts}" var="post">
-				<c:url var="editUrl" value="/krams/public/edit" />
-				<c:url var="deleteUrl" value="/krams/public/delete" />
-				<c:url var="addUrl" value="/krams/public/add" />
+				<c:url var="editUrl" value="/public/edit" />
+				<c:url var="deleteUrl" value="/public/delete" />
+				<c:url var="addUrl" value="/public/add" />
 			<tr>
 				<td><c:out value="${post.date}" /></td>
 				<td><c:out value="${post.message}" /></td>
