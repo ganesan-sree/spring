@@ -1,6 +1,8 @@
 package com.task.auth;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,9 +15,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.bean.UserTest;
 import com.dao.AuthDao;
@@ -89,7 +93,7 @@ public class AuthController {
 
 	@RequestMapping(value = "forgotPassword", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getForgotPassword() {
-UserTest u=new UserTest();
+		UserTest u=new UserTest();
 		
 		u.setPassword("4444444443333333333333");
 		httpServletRequest.setAttribute("forgot", u);	
@@ -105,25 +109,44 @@ UserTest u=new UserTest();
 			System.out.println(user.getPassword());
 		}
 	
+		
 		registrationValidator.validate(user, result);		
 		result.reject("user","Hello using ");
 		result.reject("test", "hello");
 		
 		model.addAttribute("statusMessageKey", "person.form.msg.success");
 		
-		
+		model.addAttribute("error", "got error");
 		
 		model.addAttribute("forgot",user);
-		//httpServletRequest.setAttribute("forgot", user);	
+		//httpServletRequest.setAttribute("forgot", user);	not working
 		
-		if(true){
-			
-				throw new Exception();
-		
-		}
  			
 		return "forward:forgotPassword";
 	}
+	
+	
+	
+	
+
+	@RequestMapping(value = "exception/{type}", method = {RequestMethod.GET,RequestMethod.POST})
+	public String exceptionCall(@PathVariable String type) throws Exception {
+
+		System.out.println("calling exception type using path variable "+type);
+
+		if (type != null) {
+
+			if(type.equals("null")){
+				throw new NullPointerException();
+			}
+			if(type.equals("general")){
+				throw new Exception();
+			}
+		}
+		return  null;
+	}
+	
+	
 	// @RequestMapping(value="dologin",method = RequestMethod.POST)
 	// public String postLogin(ModelMap model) {
 	//
@@ -144,13 +167,36 @@ UserTest u=new UserTest();
 	// }
 
 	@ExceptionHandler(Exception.class)
-	public ModelAndView handleIOException(IOException ex, HttpServletRequest request, HttpServletResponse response) throws IOException {
-	    
+	public ModelAndView handleIOException(Exception ex, HttpServletRequest request, HttpServletResponse response) throws IOException {	    
 	    System.out.println("It worked!!!!!!!!!!!!!!!!!!!");
+	    System.out.println(request.getQueryString());
+	    
+	    System.out.println(request.getContextPath());
+	    System.out.println(request.getRequestURI());
+	    System.out.println(request.getServletPath());
+	    
+	    StringWriter errors = new StringWriter();
+	    ex.printStackTrace(new PrintWriter(errors));
 	    
 	    
-	    return new ModelAndView("/403.jsp");
+	    request.setAttribute("error", errors.toString());
+	   
+	    
+	    return new ModelAndView("../exception");
 	}
+	
+	
+	@ExceptionHandler(NullPointerException.class)
+	@ResponseBody
+	public String handleException1(NullPointerException ex)
+	{
+		System.out.println("Null Point Exception !!!!!!!!!!!!!!!!!! \n\n\n\n");
+		System.out.println(ex.getMessage());
+	    return ex.getMessage();
+	}
+	
+	
+	
 	
 	private String getEncryptedPassword(String plainText) {
 		StringBuilder sb = new StringBuilder();

@@ -21,27 +21,16 @@
     <c:if test="${not empty statusMessageKey}">
        <p><fmt:message key="${statusMessageKey}"/></p>
     </c:if>
-
-    <spring:hasBindErrors name="user">
-        <h2>Errors</h2>
-        <div class="formerror">
-            <ul>
-           
-            <c:forEach var="error" items="${error.allErrors}">
-                <li>${error.defaultMessage}</li>
-            </c:forEach>
-            </ul>
-        </div>
-    </spring:hasBindErrors>
 </div>
 
 <c:if test="${not empty error}">
 <h4>using  c:if test = not empty error</h4>
 </c:if>
-<spring:bind path="forgot">
-    <input type="text" name="${status.expression}" value="${status.value}"/>
-    <span class="fieldError">${status.errorMessage}</span>
-</spring:bind>
+
+
+
+
+
 <div align="center" >
 <form:form commandName="forgot" action="doforgotpassword" method="post">
 Password:
@@ -58,11 +47,48 @@ Re-Password:
 
 </div>
 
+
 <div align="center">
 <h4>Form using model attribute </h4>
 <form:form modelAttribute = "forgot">
     <form:input path = "password" />
 </form:form>
+</div>
+
+
+
+
+
+
+<div align="center">
+<h4> using spring:hasBindErrors </h4>
+    <spring:hasBindErrors name="forgot">
+        <h2>Errors</h2>
+        <div class="formerror">
+            <ul>
+           <c:out value="${status.expression}"></c:out>
+           <c:out value="${status.value}"></c:out>
+           <c:out value="${status.errorMessage}"></c:out>
+           
+            <c:forEach var="error" items="${error.allErrors}">
+                <li>${error.defaultMessage}</li>
+            </c:forEach>
+            </ul>
+        </div>
+    </spring:hasBindErrors>
+</div>
+
+
+<div align="center">
+<h4> using spring:bind </h4>
+<spring:bind path="forgot" >
+<h4> start: </h4>
+${status.displayValue}
+${status.expression} 
+${status.value}
+${status.errorMessage}
+</spring:bind>
+
 </div>
 </body>
 </html>
