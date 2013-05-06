@@ -1,5 +1,6 @@
 package com.task.auth;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -72,7 +74,7 @@ public class AuthController {
 	@RequestMapping(value = "doRegistration", method = RequestMethod.POST)
 
 	public String doRegistration(@ModelAttribute("user") UserTest user,BindingResult result,@RequestParam("email") String email) {		
-		System.out.println("httpServletRequest "+httpServletRequest.getParameter("name"));		
+		System.out.println("httpServletRequest "+httpServletRequest.getParameter("username"));		
 		System.out.println("servletContext "+servletContext.getContextPath());
 		System.out.println("RequestParam "+email);
 		System.out.println(user);		
@@ -85,11 +87,43 @@ public class AuthController {
 		return view;
 	}
 
-	@RequestMapping(value = "forgotPassword", method = RequestMethod.GET)
+	@RequestMapping(value = "forgotPassword", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getForgotPassword() {
+UserTest u=new UserTest();
+		
+		u.setPassword("4444444443333333333333");
+		httpServletRequest.setAttribute("forgot", u);	
 		return "auth/ForgotPassword";
 	}
 
+	
+	@RequestMapping(value="doforgotpassword",method={RequestMethod.POST})
+	
+	public String doForgotPassword(@ModelAttribute() UserTest user,BindingResult result,ModelMap model) throws Exception{
+		System.out.println(user);
+		if(user !=null){
+			System.out.println(user.getPassword());
+		}
+	
+		registrationValidator.validate(user, result);		
+		result.reject("user","Hello using ");
+		result.reject("test", "hello");
+		
+		model.addAttribute("statusMessageKey", "person.form.msg.success");
+		
+		
+		
+		model.addAttribute("forgot",user);
+		//httpServletRequest.setAttribute("forgot", user);	
+		
+		if(true){
+			
+				throw new Exception();
+		
+		}
+ 			
+		return "forward:forgotPassword";
+	}
 	// @RequestMapping(value="dologin",method = RequestMethod.POST)
 	// public String postLogin(ModelMap model) {
 	//
@@ -109,6 +143,15 @@ public class AuthController {
 	// return "dashBoard";
 	// }
 
+	@ExceptionHandler(Exception.class)
+	public ModelAndView handleIOException(IOException ex, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    
+	    System.out.println("It worked!!!!!!!!!!!!!!!!!!!");
+	    
+	    
+	    return new ModelAndView("/403.jsp");
+	}
+	
 	private String getEncryptedPassword(String plainText) {
 		StringBuilder sb = new StringBuilder();
 		try {

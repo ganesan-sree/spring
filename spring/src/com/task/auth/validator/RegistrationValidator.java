@@ -15,7 +15,7 @@ public class RegistrationValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name.required","DefaultHellooooooooo");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "name.required","DefaultHellooooooooo");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required" ,"DefaultHellooooooooo");	
 		ValidationUtils.rejectIfEmpty(errors, "sex", "gender.required","DefaultHellooooooooo");
 		ValidationUtils.rejectIfEmpty(errors, "country", "country.required","DefaultHellooooooooo");
