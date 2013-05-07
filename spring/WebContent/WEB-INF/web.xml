@@ -145,14 +145,24 @@
         <servlet-name>tiles</servlet-name>
         <url-pattern>/tiles/*</url-pattern>
     </servlet-mapping>
-  
-  
-  
-  
-  <error-page>
-  <error-code>403</error-code>
-  <location>/403.jsp</location>
-  </error-page>
+
+
+
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>webservice</servlet-name> -->
+<!-- 		<servlet-class>org.webservice.example.ApacheCxfWebserviceImpl</servlet-class> -->
+<!-- 		<load-on-startup>1</load-on-startup> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>webservice</servlet-name> -->
+<!-- 		<url-pattern>/ws/ex</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/403.jsp</location>
+	</error-page>
   
   
   <welcome-file-list>

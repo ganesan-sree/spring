@@ -1,6 +1,6 @@
 <jboss-app>
   <loader-repository> 
-  com.example:archive=spring.ear
+  com.example:archive=spring.war
      <loader-repository-config> 
      java2ParentDelegation=false 
      </loader-repository-config> 
