@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
-import com.bean.UserTest;
+import com.bean.User;
 
 
 public class HibernateUtil {
@@ -44,7 +44,7 @@ public class HibernateUtil {
 			
 			s = sessionFactory.openSession();
 			
-			Criteria c=s.createCriteria(UserTest.class);
+			Criteria c=s.createCriteria(User.class);
 			c.add(Restrictions.eq("userId", 1));
 			System.out.println(c.list());
 			

@@ -3,7 +3,7 @@ package com.bean;
 import java.util.Date;
 
 
-public class UserTest  {
+public class User  {
 
 
 	private Integer userId;
@@ -39,6 +39,8 @@ public class UserTest  {
 
 	
 	private String sex;
+	
+	private String userrole;
 
 
 	public Integer getUserId() {
@@ -161,5 +163,19 @@ public class UserTest  {
 		this.username = username;
 	}
 
+	public String getUserrole() {
+		return userrole;
+	}
+
+	public void setUserrole(String userrole) {
+		this.userrole = userrole;
+	}
+
+
+	@Override
+	public String toString() {
 	
+		return ""+this.getCountry()+"\n"+this.getEmail()+"\n"+this.getPassword()+"\n"+this.getPhone()+"\n"+this.getSex()+"\n" +
+				""+this.getUsername()+"\n"+this.getUserrole()+"\n"+this.getUserId()+"\n"+this.getRegisteredDate()+"\n";
+	}	
 }

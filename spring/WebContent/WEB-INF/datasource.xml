@@ -15,7 +15,7 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName"  value="com.ibm.db2.jcc.DB2Driver"></property>
-		<property name="url" value="jdbc:db2://192.168.1.6:50000/easymed"></property>
+		<property name="url" value="jdbc:db2://192.168.1.6:50000/workout"></property>
 		<property name="username" value="db2inst1"></property>
 		<property name="password" value="123456"></property>
 	</bean>
@@ -36,7 +36,7 @@
 		</property>
 		<property name="mappingResources">
 			<list>
-				<value>com/bean/UserTest.hbm.xml</value>
+				<value>com/bean/User.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

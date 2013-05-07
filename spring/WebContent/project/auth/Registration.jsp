@@ -49,7 +49,21 @@ font-style: italic;
 					<td>Country</td>
 					<td><form:input path="country"/></td>
 					<td><form:errors path="country" cssClass="error"/></td>
+				</tr>	
+				<tr><td>UserRole</td>					
+					<td><form:select path="userrole">
+					<form:option value="0" label="Select" />
+					<form:option value="ROLE_ADMIN" label="ROLE_ADMIN" />
+					<form:option value="ROLE_USER" label="ROLE_USER" />
+					</form:select></td>
+					
+					<td><form:errors path="userrole" cssClass="error"/></td>
 				</tr>
+				<tr>
+					<td>Phone</td>
+					<td><form:password path="phone"/></td>
+					<td><form:errors path="phone" cssClass="error"/></td>
+				
 			</table>
 			<input type="submit" value="Register">
 		</form:form>

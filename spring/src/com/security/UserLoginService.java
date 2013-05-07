@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import com.bean.UserTest;
+
 import com.dao.AuthDao;
 
 public class UserLoginService implements UserDetailsService {
@@ -20,7 +20,7 @@ public class UserLoginService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) {
 		System.out.println(username);
 		try {
-			UserTest domainUser = authdao.findByUsername(username);
+			com.bean.User domainUser = authdao.findByUsername(username);
 			System.out.println("\n\n\n\n\n\n");			
 			boolean enabled = true;
 			boolean accountNonExpired = true;

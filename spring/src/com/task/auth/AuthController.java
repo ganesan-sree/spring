@@ -5,6 +5,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.bean.UserTest;
+import com.bean.User;
 import com.dao.AuthDao;
+import com.task.auth.util.StringUtil;
 import com.task.auth.validator.RegistrationValidator;
 
 @Controller
@@ -55,29 +59,30 @@ public class AuthController {
 		String password = request.getParameter("password");
 		System.out.println(email);
 		System.out.println(password);
-		UserTest user = new UserTest();
+		User user = new User();
 		user.setEmail(email);
-		user.setPassword(getEncryptedPassword(password));
+		user.setPassword(StringUtil.getEncryptedPassword(password));
 		user =authdao.checkLogin(user);
 		String view="dashBoard";
 		System.out.println(user);
 		if(user==null){
 			view="redirect:login";
 		}
+		
 		model.addAttribute("user", user);
 		return new ModelAndView(view,model);
 	}
 
 	@RequestMapping(value = "registration")
 	public String getRegistration() {		
-		httpServletRequest.setAttribute("user", new UserTest());	
+		httpServletRequest.setAttribute("user", new User());	
 		return "auth/Registration";
 	}
 	
 
 	@RequestMapping(value = "doRegistration", method = RequestMethod.POST)
 
-	public String doRegistration(@ModelAttribute("user") UserTest user,BindingResult result,@RequestParam("email") String email) {		
+	public String doRegistration(@ModelAttribute("user") User user,BindingResult result,@RequestParam("email") String email) {		
 		System.out.println("httpServletRequest "+httpServletRequest.getParameter("username"));		
 		System.out.println("servletContext "+servletContext.getContextPath());
 		System.out.println("RequestParam "+email);
@@ -87,13 +92,19 @@ public class AuthController {
 		String view="dashBoard";
 		if (result.hasErrors()) {
 			view ="forward:registration";
-		} 			
+		} 
+		else{
+			user.setRegisteredDate(new Timestamp(new Date().getTime()));
+			user.setPassword(StringUtil.getEncryptedPassword(user.getPassword()));
+			System.out.println(user);
+			authdao.SaveUser(user);
+		}
 		return view;
 	}
 
 	@RequestMapping(value = "forgotPassword", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getForgotPassword() {
-		UserTest u=new UserTest();
+		User u=new User();
 		
 		u.setPassword("4444444443333333333333");
 		httpServletRequest.setAttribute("forgot", u);	
@@ -103,31 +114,46 @@ public class AuthController {
 	
 	@RequestMapping(value="doforgotpassword",method={RequestMethod.POST})
 	
-	public String doForgotPassword(@ModelAttribute() UserTest user,BindingResult result,ModelMap model) throws Exception{
+	public String doForgotPassword(@ModelAttribute() User user,BindingResult result,ModelMap model) throws Exception{
 		System.out.println(user);
 		if(user !=null){
 			System.out.println(user.getPassword());
 		}
-	
 		
 		registrationValidator.validate(user, result);		
 		result.reject("user","Hello using ");
 		result.reject("test", "hello");
 		
-		model.addAttribute("statusMessageKey", "person.form.msg.success");
-		
-		model.addAttribute("error", "got error");
-		
+		model.addAttribute("statusMessageKey", "password.success");		
+		model.addAttribute("error", "got error");		
 		model.addAttribute("forgot",user);
-		//httpServletRequest.setAttribute("forgot", user);	not working
-		
- 			
+		//httpServletRequest.setAttribute("forgot", user);	not working		 	
 		return "forward:forgotPassword";
 	}
 	
 	
+
+	@RequestMapping(value="listuser")
+	public ModelAndView listuser(){		
+		Collection<User> userlist=authdao.listUser();		
+		return new ModelAndView("user/listUser","userlist",userlist);
+	}
 	
 	
+	
+/*
+	*Below lines ogfcode for Exception handling !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	*
+	*
+	*
+	*
+	*/	
+	
+	
+	
+	
+	
+
 
 	@RequestMapping(value = "exception/{type}", method = {RequestMethod.GET,RequestMethod.POST})
 	public String exceptionCall(@PathVariable String type) throws Exception {
@@ -147,25 +173,6 @@ public class AuthController {
 	}
 	
 	
-	// @RequestMapping(value="dologin",method = RequestMethod.POST)
-	// public String postLogin(ModelMap model) {
-	//
-	// System.out.println(model);
-	//
-	// System.out.println(model.size());
-	// Set<Entry<String, Object>> s = model.entrySet();
-	// Iterator<Entry<String, Object>> itr = s.iterator();
-	// while (itr.hasNext()) {
-	// Entry<String, Object> e = itr.next();
-	// System.out.println(e.getKey() + "       " + e.getValue());
-	// }
-	//
-	// System.out.println(model.get("username"));
-	// System.out.println(model.get("password"));
-	//
-	// return "dashBoard";
-	// }
-
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleIOException(Exception ex, HttpServletRequest request, HttpServletResponse response) throws IOException {	    
 	    System.out.println("It worked!!!!!!!!!!!!!!!!!!!");
@@ -196,64 +203,4 @@ public class AuthController {
 	}
 	
 	
-	
-	
-	private String getEncryptedPassword(String plainText) {
-		StringBuilder sb = new StringBuilder();
-		try {
-			MessageDigest message = MessageDigest.getInstance("MD5");
-			message.update(plainText.getBytes());
-			byte[] encodedString = message.digest();
-			for (int i = 0; i < encodedString.length; i++) {
-				if ((encodedString[i] & 0xff) < 0x10) {
-					sb.append("0");
-				}
-				sb.append(Long.toString(encodedString[i] & 0xff, 16));
-			}
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		System.out.println("password "+sb.toString());
-		return sb.toString();
-	}
-	
-	
-	private String getSHAEncryptedPassword(String plainText) {
-
-		MessageDigest md=null;
-		try {
-			md = MessageDigest.getInstance("SHA");
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		byte[] dataBytes = new byte[1024];
-
-		int nread = 0;
-
-		md.update("admin".getBytes());
-
-		byte[] mdbytes = md.digest();
-
-		// convert the byte to hex format method 1
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < mdbytes.length; i++) {
-			sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16)
-					.substring(1));
-		}
-
-		System.out.println("Digest(in hex format):: " + sb.toString());
-
-		// convert the byte to hex format method 2
-		StringBuffer hexString = new StringBuffer();
-		for (int i = 0; i < mdbytes.length; i++) {
-			String hex = Integer.toHexString(0xff & mdbytes[i]);
-			if (hex.length() == 1)
-				hexString.append('0');
-			hexString.append(hex);
-		}
-		System.out.println("Digest(in hex format):: " + hexString.toString());
-		return hexString.toString();
-	}
 }
