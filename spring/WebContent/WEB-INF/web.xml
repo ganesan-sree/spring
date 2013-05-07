@@ -134,6 +134,19 @@
 	</servlet-mapping>
   
   
+  <!-- http://192.168.1.230:8080/spring/tiles/welcome.htm -->
+  
+   <servlet>
+        <servlet-name>tiles</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>tiles</servlet-name>
+        <url-pattern>/tiles/*</url-pattern>
+    </servlet-mapping>
+  
+  
   
   
   <error-page>
