@@ -35,13 +35,32 @@ table.gridtable td {
 </style>
 
 
+
+ <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+
+<script type="text/javascript" src="../js/registration.js"></script>
+
+    <script type="text/javascript">
+        var GB_ROOT_DIR = "./greybox/";
+    </script>
+
+    <script type="text/javascript" src="greybox/AJS.js"></script>
+    <script type="text/javascript" src="greybox/AJS_fx.js"></script>    
+    <script type="text/javascript" src="greybox/gb_scripts.js"></script>
+    <link href="greybox/gb_styles.css" rel="stylesheet" type="text/css" media="all" />
+
+
+ 
+ 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<table border="2px" class="gridtable">
+  <body onload="InitializeEvents()">
+<table class="gridtable" width="100%" id="myTable">
 <thead><tr>  <th>UserName</th>   <th>Email</th>  <th>gender</th> <th>Phone</th>   <th>Password</th>  <th>Country</th>  <th>UserRole</th>   </tr></thead>
+
 <c:forEach items="${userlist}" var="user">
+<tbody>
 <tr>
 <td><c:out value="${user.username}"></c:out></td>
 <td><c:out value="${user.email}"></c:out></td>
@@ -51,8 +70,17 @@ table.gridtable td {
 <td><c:out value="${user.country}"></c:out></td>
 <td><c:out value="${user.userrole}"></c:out></td>
  </tr>
+ </tbody>
 </c:forEach>
+
 </table>
+
+
+<a href="edituser/3" onclick="return GB_showCenter('Google', this.href)">Edit User</a>
+
+
+
+
 </body>
 </html>
 

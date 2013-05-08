@@ -15,8 +15,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 
 	<bean id="customerService" class="com.aop.services.CustomerService">
-		<property name="name" value="Yong Mook Kim" />
-		<property name="url" value="http://www.mkyong.com" />
+		<property name="name" value="My name is agnesan" />
+		<property name="url" value="http://easymedmobile.com/" />
 	</bean>
 	
 	<bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
@@ -26,13 +26,13 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         </property>
     </bean>
 	
-
-
 	<bean id="hijackAroundMethodBean" class="com.aop.HijackAroundMethod"/>	
 	<bean id="hijackAfterMethod" class="com.aop.HijackAfterMethod"/>	
 	<bean id="hijackBeforeMethod" class="com.aop.HijackBeforeMethod"/>	
 	<bean id="hijackThrowException" class="com.aop.HijackThrowException"/>
 
+ 
+ <!-- Type-I -->
  
 <!-- 	<bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean"> -->
 <!-- 		<property name="target" ref="customerService" /> -->
@@ -52,8 +52,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 <!-- 	</bean> -->
 	
 	
+	<!-- Type-II -->
+	
+	
+	
 		<aop:aspectj-autoproxy />
-	<!-- Equivalent -->
 <!-- 	<bean -->
 <!-- 		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"> -->
 <!-- 		<property name="beanNames"> -->
@@ -69,16 +72,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 <!-- 	</bean> -->
 	
 	
-	<!-- Pointcut -->
-	<bean id="customerPointcut" 
-                class="org.springframework.aop.support.NameMatchMethodPointcut">
+	<!-- Type-III -->
+	
+	
+	<bean id="customerPointcut"  class="org.springframework.aop.support.NameMatchMethodPointcut">
 		<property name="mappedName" value="printName" />
 	</bean>
- 
- <!-- Advisor -->
- 
-	<bean id="customerAdvisor" 
-                 class="org.springframework.aop.support.DefaultPointcutAdvisor">
+  
+	<bean id="customerAdvisor"  class="org.springframework.aop.support.DefaultPointcutAdvisor">
 		<property name="pointcut" ref="customerPointcut" />
 		<property name="advice" ref="hijackAroundMethodBean" />
 	</bean>
@@ -88,12 +89,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<!-- Aspect -->
 
 
-	<bean id="customerBo" class="com.aop.aspectJ.customer.bo.impl.CustomerBoImpl" />
-	
+	<bean id="customerBo" class="com.aop.aspectJ.customer.bo.impl.CustomerBoImpl" />	
 	<bean id="logAspect" class="com.aop.aspectJ.LoggingAspect" />
 	
 	
-	<aop:config>
+<aop:config>
 
 	<aop:aspect id="aspectLoggging" ref="logAspect">
 		<!-- @After -->

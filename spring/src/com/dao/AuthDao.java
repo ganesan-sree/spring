@@ -72,4 +72,20 @@ public class AuthDao {
 		session.flush();
 		return null;
 	}
+	
+	public User findById(Integer  id) {
+		Session session = SpringintegrationHibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		Criteria c = session.createCriteria(User.class);
+		c.add(Restrictions.eq("userId", id));		
+		List<User> list = c.list();
+		if (list.size() > 0)	{
+			tx.commit();
+			return list.get(0);	
+		}
+		tx.commit();
+		session.clear();
+		session.flush();
+		return null;
+	}
 }

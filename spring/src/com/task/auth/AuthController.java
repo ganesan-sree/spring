@@ -81,8 +81,8 @@ public class AuthController {
 	
 
 	@RequestMapping(value = "doRegistration", method = RequestMethod.POST)
-
-	public String doRegistration(@ModelAttribute("user") User user,BindingResult result,@RequestParam("email") String email) {		
+	public String doRegistration(@ModelAttribute("user") User user,BindingResult result,@RequestParam("email") String email) {
+		
 		System.out.println("httpServletRequest "+httpServletRequest.getParameter("username"));		
 		System.out.println("servletContext "+servletContext.getContextPath());
 		System.out.println("RequestParam "+email);
@@ -139,6 +139,14 @@ public class AuthController {
 		return new ModelAndView("user/listUser","userlist",userlist);
 	}
 	
+	@RequestMapping(value="edituser/{id}")
+	public ModelAndView edituser(@PathVariable Integer id){	
+		System.out.println("Edit user "+id);
+		User user=authdao.findById(id);		
+		
+		return new ModelAndView("user/editUser","user",user);
+	}
+	
 	
 	
 /*
@@ -185,7 +193,7 @@ public class AuthController {
 	    StringWriter errors = new StringWriter();
 	    ex.printStackTrace(new PrintWriter(errors));
 	    
-	    
+	    System.out.println(errors.toString());
 	    request.setAttribute("error", errors.toString());
 	   
 	    

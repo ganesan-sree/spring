@@ -19,11 +19,11 @@ public class AopController {
 	public String printWelcome(ModelMap model,Principal principal) {
 		System.out.println("Aoppppppppppppppppppp");
 		
-		System.out.println("*************************");
+		System.out.println("*************************\n\n");
 		customerServiceProxy.printName();
-		System.out.println("*************************");
+		System.out.println("*************************\n\n");
 		customerServiceProxy.printURL();
-		System.out.println("*************************");
+		System.out.println("*************************\n\n");
 		try {
 			customerServiceProxy.printThrowException();
 		} catch (Exception e) {
