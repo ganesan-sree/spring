@@ -34,22 +34,30 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
  
  <!-- Type-I -->
  
-<!-- 	<bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean"> -->
-<!-- 		<property name="target" ref="customerService" /> -->
-<!-- 		<property name="interceptorNames"> -->
+	<bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="customerService" />
+		<property name="interceptorNames">
+		<!-- possible 1 -->
 <!-- 			<list> -->
 <!-- 				<value>hijackAroundMethodBean</value> -->
 <!-- 			</list> -->
+
+<!-- possible 2 -->
+
 <!-- 			<list> -->
 <!-- 				<value>hijackBeforeMethod</value> -->
 <!-- 				<value>hijackAfterMethod</value> -->
 <!-- 			</list> -->
-<!-- 			<list>				 -->
-<!-- 				<value>customerAdvisor</value> -->
-<!-- 			</list> -->
+			
+			
+<!-- possible 3 -->
 
-<!-- 		</property> -->
-<!-- 	</bean> -->
+			<list>				
+				<value>customerAdvisor</value>
+			</list>
+
+		</property>
+	</bean>
 	
 	
 	<!-- Type-II -->
@@ -75,14 +83,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<!-- Type-III -->
 	
 	
-	<bean id="customerPointcut"  class="org.springframework.aop.support.NameMatchMethodPointcut">
-		<property name="mappedName" value="printName" />
-	</bean>
+<!-- 	<bean id="customerPointcut"  class="org.springframework.aop.support.NameMatchMethodPointcut"> -->
+<!-- 		<property name="mappedName" value="printName" /> -->
+<!-- 	</bean> -->
   
-	<bean id="customerAdvisor"  class="org.springframework.aop.support.DefaultPointcutAdvisor">
-		<property name="pointcut" ref="customerPointcut" />
-		<property name="advice" ref="hijackAroundMethodBean" />
-	</bean>
+<!-- 	<bean id="customerAdvisor"  class="org.springframework.aop.support.DefaultPointcutAdvisor"> -->
+<!-- 		<property name="pointcut" ref="customerPointcut" /> -->
+<!-- 		<property name="advice" ref="hijackAroundMethodBean" /> -->
+<!-- 	</bean> -->
 	
 	
 	
