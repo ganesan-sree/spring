@@ -15,7 +15,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 
 	<bean id="customerService" class="com.aop.services.CustomerService">
-		<property name="name" value="My name is agnesan" />
+		<property name="name" value="My name is ganesan" />
 		<property name="url" value="http://easymedmobile.com/" />
 	</bean>
 	
@@ -34,9 +34,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
  
  <!-- Type-I -->
  
-	<bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
-		<property name="target" ref="customerService" />
-		<property name="interceptorNames">
+<!-- 	<bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean"> -->
+<!-- 		<property name="target" ref="customerService" /> -->
+<!-- 		<property name="interceptorNames"> -->
 		<!-- possible 1 -->
 <!-- 			<list> -->
 <!-- 				<value>hijackAroundMethodBean</value> -->
@@ -49,39 +49,31 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 <!-- 				<value>hijackAfterMethod</value> -->
 <!-- 			</list> -->
 			
-			
-<!-- possible 3 -->
-
-			<list>				
-				<value>customerAdvisor</value>
-			</list>
-
-		</property>
-	</bean>
-	
-	
-	<!-- Type-II -->
-	
-	
-	
-		<aop:aspectj-autoproxy />
-<!-- 	<bean -->
-<!-- 		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"> -->
-<!-- 		<property name="beanNames"> -->
-<!-- 			<list> -->
-<!-- 				<value>*Service</value> -->
-<!-- 			</list> -->
-<!-- 		</property> -->
-<!-- 		<property name="interceptorNames"> -->
-<!-- 			<list> -->
-<!-- 				<value>customerAdvisor</value> -->
-<!-- 			</list> -->
+		
 <!-- 		</property> -->
 <!-- 	</bean> -->
 	
 	
-	<!-- Type-III -->
+	<!-- Type-II -->
+		
+
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">		
+		<property name="beanNames">
+			<list>
+				<value>*Service</value>
+			</list>
+		</property>		
+		<property name="interceptorNames">
+			<list>
+				<value>hijackAroundMethodBean</value>
+			</list>
+		</property>
+	</bean>
 	
+	
+	<!-- Type-III -->
+
+
 	
 <!-- 	<bean id="customerPointcut"  class="org.springframework.aop.support.NameMatchMethodPointcut"> -->
 <!-- 		<property name="mappedName" value="printName" /> -->
@@ -99,16 +91,20 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 	<bean id="customerBo" class="com.aop.aspectJ.customer.bo.impl.CustomerBoImpl" />	
 	<bean id="logAspect" class="com.aop.aspectJ.LoggingAspect" />
-	
+			
+	<!-- Type-I  annotation  refer class com.aop.aspectJ.LoggingAspect-->
+		<!-- 	<aop:aspectj-autoproxy />	 -->
+		
+		
+	<!-- Type-II -->
 	
 <aop:config>
-
 	<aop:aspect id="aspectLoggging" ref="logAspect">
-		<!-- @After -->
-		<aop:pointcut id="pointCutAfter"	expression="execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomer(..))" />
-		<aop:after method="logAfter" pointcut-ref="pointCutAfter" />
+		<aop:pointcut id="pointCutExp"	expression="execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomer(..))" />
+		<aop:before method="logBefore" pointcut="within(com.aop.aspectJ.customer.bo..*)"/>
+		<aop:after method="logAfter" pointcut-ref="pointCutExp" />
+		
 	</aop:aspect>
-
 </aop:config>
 	
 </beans>

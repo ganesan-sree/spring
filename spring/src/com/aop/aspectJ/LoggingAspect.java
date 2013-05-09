@@ -14,25 +14,24 @@ import org.aspectj.lang.annotation.Before;
 @Aspect
 public class LoggingAspect {
 
-	/*@Before("execution(* com.mkyong.customer.bo.CustomerBo.addCustomer(..))")
+	@Before("execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomer(..))")
 	public void logBefore(JoinPoint joinPoint) {
 
 		System.out.println("logBefore() is running!");
 		System.out.println("hijacked : " + joinPoint.getSignature().getName());
 		System.out.println("******");
-	}*/
+	}
 
-	//@After("execution(* com.mkyong.customer.bo.CustomerBo.addCustomer(..))")
+	@After("execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomer(..))")
 	public void logAfter(JoinPoint joinPoint) {
 
 		System.out.println("logAfter() is running!");
 		System.out.println("hijacked : " + joinPoint.getSignature().getName());
-		System.out.println("******");
 
 	}
 	
-	/*@AfterReturning(
-			pointcut = "execution(* com.mkyong.customer.bo.CustomerBo.addCustomerReturnValue(..))",
+	@AfterReturning(
+			pointcut = "execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomerReturnValue(..))",
 			returning= "result")
 	public void logAfterReturning(JoinPoint joinPoint, Object result) {
 
@@ -41,10 +40,10 @@ public class LoggingAspect {
 		System.out.println("Method returned value is : " + result);
 		System.out.println("******");
 
-	}*/
+	}
 	
-	/*@AfterThrowing(
-			pointcut = "execution(* com.mkyong.customer.bo.CustomerBo.addCustomerThrowException(..))",
+	@AfterThrowing(
+			pointcut = "execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomerThrowException(..))",
 			throwing= "error")
 	public void logAfterThrowing(JoinPoint joinPoint, Throwable error) {
 
@@ -53,7 +52,7 @@ public class LoggingAspect {
 		System.out.println("Exception : " + error);
 		System.out.println("******");
 
-	}*/
+	}
 	
 	
 	@Around("execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomerAround(..))")

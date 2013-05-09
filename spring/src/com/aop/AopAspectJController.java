@@ -19,13 +19,21 @@ public class AopAspectJController {
 	@RequestMapping(method = RequestMethod.GET)	
 	public String printWelcome(ModelMap model,Principal principal) {
 		CustomerBo customer = (CustomerBo) customerBo;
+
+		System.out.println("**********************\n\n\n");
 		customer.addCustomer();
 		
-		//customer.addCustomerReturnValue();
+		System.out.println("**********************\n\n\n");
+		customer.addCustomerReturnValue();
 		
-		//customer.addCustomerThrowException();
+		System.out.println("**********************\n\n\n");
+		try {
+			customer.addCustomerThrowException();
+		} catch (Exception e) {				
+		}
 		
-		customer.addCustomerAround("mkyong");
+		System.out.println("**********************");
+		customer.addCustomerAround("The customer name is Ganesan");
 
 		return "aop/welcome";
  
