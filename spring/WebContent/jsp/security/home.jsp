@@ -11,7 +11,7 @@
 	
 	
 	<br></br>
-	<h1>A The Authorization tag</h1>
+	<h1>A The Authorize tag   "sec:authorize  ifAnyGranted="ROLE_ADMIN""</h1>
 	<sec:authorize  ifAnyGranted="ROLE_ADMIN">
 		<h1>Only admin can see this</h1>
 		<br/>
@@ -22,11 +22,12 @@
 <br/>
 <br/>
 <br/>
-<h1>B The Authentication tag</h1>
+<h1>B The Authentication tag  sec:authentication property="credentials" ,  authentication property="authorities" var="roles" scope="page" , sec:authentication property="principal.username"</h1>
 <!-- Credentials display -->
 Your password is <sec:authentication property="credentials"/>
 ...
  
+ <h1>sec:authentication property="authorities" var="roles" scope="page"</h1>
 <!-- Roles display -->
 <sec:authentication property="authorities" var="roles" scope="page" />
 Your roles are:
@@ -36,6 +37,7 @@ Your roles are:
     </c:forEach>
 </ul>
  
+ <h1>sec:authentication property="principal.username"</h1>
 <!-- Username display -->
 Your username is <sec:authentication property="principal.username"/>
 

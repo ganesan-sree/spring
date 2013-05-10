@@ -21,19 +21,22 @@ public class UserLoginService implements UserDetailsService {
 		System.out.println(username);
 		try {
 			com.bean.User domainUser = authdao.findByUsername(username);
-			System.out.println("\n\n\n\n\n\n");			
+			System.out.println("\n\n\n\n");			
 			boolean enabled = true;
 			boolean accountNonExpired = true;
 			boolean credentialsNonExpired = true;
 			boolean accountNonLocked = true;
-			List<String> roles = new ArrayList<String>();
-			roles.add("ROLE_USER");
-			roles.add("ROLE_ADMIN");
+			boolean isAdmin = false;
+			
+			if ("ROLE_ADMIN".equals(domainUser.getUserrole())) {				
+				isAdmin=true;
+			} 
+			
 
 			return new User(domainUser.getUsername(), domainUser.getPassword()
 					.toLowerCase(), enabled, accountNonExpired,
 					credentialsNonExpired, accountNonLocked,
-					getAuthorities(true));
+					getAuthorities(isAdmin));
 
 		} catch (Exception e) {
 		 e.printStackTrace();

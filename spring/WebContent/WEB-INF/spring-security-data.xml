@@ -11,10 +11,15 @@
 
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/security" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
-		<intercept-url pattern="/admin*" access="hasAnyRole('ROLE_ADMIN')" />		
+		<intercept-url pattern="/admin*" access="hasAnyRole('ROLE_ADMIN')" />	
+		
+			
 		<form-login login-page="/login" default-target-url="/security" 
 			authentication-failure-url="/loginfailed" />
 		<logout logout-success-url="/logout" />
+		
+	
+		
 		
 <!-- 		<access-denied-handler error-page="404"/>		 -->
 	</http>
@@ -35,34 +40,31 @@
 
 	 <beans:bean id="authdao" class="com.dao.AuthDao" />
 
-<context:component-scan base-package="com.security" >
-<context:include-filter  type="regex"   expression="com.security.com.security.UserLoginService" />
-<context:exclude-filter type="regex" expression="com.security.*Controller"/>
-</context:component-scan>
 	 
 	<beans:bean id="userService" class="com.security.UserLoginService">
 <!-- 	<beans:property name="authdao" ref="authdao"></beans:property> -->
-	</beans:bean>	        
-	
-	<beans:bean class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" id="passwordEncoder"/>
+	</beans:bean>	        	
+	<beans:bean class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" id="passwordEncoderSHA"/>
+	<beans:bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoderMD5"/>
 	
 	<!-- TYPE-II userDetailService  -->     
 	
-	 <authentication-manager>
-	         <authentication-provider user-service-ref="userService">	 
-	         <password-encoder hash="md5" />           
-	         </authentication-provider>       
-	    </authentication-manager>
+<!-- 	 <authentication-manager> -->
+<!-- 	         <authentication-provider user-service-ref="userService">	  -->
+<!-- 	         <password-encoder hash="md5" />            -->
+<!-- 	         </authentication-provider>        -->
+<!-- 	    </authentication-manager> -->
 	
 	<!-- TYPE -III PreparedStatement -->
 	
-<!-- 	<authentication-manager> -->
-<!-- 	   <authentication-provider> -->
-<!-- 		<jdbc-user-service data-source-ref="dataSource"    -->
-<!-- 		   users-by-username-query="select username,password from user_test where username=?"   -->
-<!-- 		   authorities-by-username-query="select u.username, u.user_role from user_test u where u.username=?" /> -->
-<!-- 	   </authentication-provider> -->
-<!-- 	</authentication-manager> -->
+	<authentication-manager>
+	   <authentication-provider>
+	     <password-encoder ref="passwordEncoderMD5" />        
+		<jdbc-user-service data-source-ref="dataSource"   
+		   users-by-username-query="select username,password,'' from user where username=?"  
+		   authorities-by-username-query="select u.username, u.user_role from user u where u.username=?" />
+	   </authentication-provider>
+	</authentication-manager>
 	
 
 </beans:beans>

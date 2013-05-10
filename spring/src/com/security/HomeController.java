@@ -20,13 +20,14 @@ public class HomeController {
 		
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	    String name1 = user.getUsername(); //get logged in username
-		System.out.println(name1);
+		System.out.println("name1 ="+name1);
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String name2 = auth.getName(); //get logged in username
-	    System.out.println(name2);
+	    System.out.println("name2 ="+name2);
 		String name3 = principal.getName();
-		model.addAttribute("message", "Spring Security Hello World");
+		model.addAttribute("message", "Spring Security Login Operation");
 		model.addAttribute("username", name3);
+		System.out.println("Password = "+user.getPassword());
 		System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 		return "home";
  

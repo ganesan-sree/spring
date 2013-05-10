@@ -12,7 +12,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>		
 <!-- 			/WEB-INF/security-dispatcher-servlet.xml, -->
-<!-- 			/WEB-INF/spring-security.xml -->
+			/WEB-INF/spring-security-data.xml
 			<!-- Below applicationContext.xm should be mention for initiating,otherwise it wont start 
 			(its applicable only when we use context-param 'contextConfigLocation' )-->
 			/WEB-INF/applicationContext.xml 
@@ -20,15 +20,15 @@
 		</param-value>
 	</context-param>
 	
-<!-- 	<filter> -->
-<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
-<!-- 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> -->
-<!-- 	</filter> -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
 
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
-<!-- 		<url-pattern>/*</url-pattern> -->
-<!-- 	</filter-mapping> -->
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
   
       <!-- Spring Security 
     http://192.168.1.230:8080/spring/login
@@ -37,15 +37,15 @@
     http://192.168.1.230:8080/spring/j_spring_security_logout
     -->
   
-<!--   	<servlet> -->
-<!-- 		<servlet-name>security-dispatcher</servlet-name> -->
-<!-- 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
-<!-- 		<load-on-startup>1</load-on-startup> -->
-<!-- 	</servlet> -->
-<!-- 	<servlet-mapping> -->
-<!-- 		<servlet-name>security-dispatcher</servlet-name> -->
-<!-- 		<url-pattern>/</url-pattern> -->
-<!-- 	</servlet-mapping> -->
+  	<servlet>
+		<servlet-name>spring-security-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring-security-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
   
   
   
