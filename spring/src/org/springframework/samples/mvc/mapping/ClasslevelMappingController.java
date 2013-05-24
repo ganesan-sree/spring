@@ -48,14 +48,14 @@ public class ClasslevelMappingController {
 	}
 
 
-	@RequestMapping(value="/consumes", method=RequestMethod.POST, consumes="application/json")
-	public @ResponseBody String byConsumes(@RequestBody JavaBean javaBean) {
-		return "Mapped by path + method + consumable media type (javaBean '" + javaBean + "')";
-	}
-
-	@RequestMapping(value="/produces", method=RequestMethod.GET, produces="application/json")
-	public @ResponseBody JavaBean byProduces() {
-		return new JavaBean();
-	}
+//	@RequestMapping(value="/consumes", method=RequestMethod.POST, consumes="application/json")
+//	public @ResponseBody String byConsumes(@RequestBody JavaBean javaBean) {
+//		return "Mapped by path + method + consumable media type (javaBean '" + javaBean + "')";
+//	}
+//
+//	@RequestMapping(value="/produces", method=RequestMethod.GET, produces="application/json")
+//	public @ResponseBody JavaBean byProduces() {
+//		return new JavaBean();
+//	}
 
 }
