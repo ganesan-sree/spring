@@ -14,7 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/form")
+@RequestMapping("/formmvc")
 @SessionAttributes("formBean")
 public class FormController {
 

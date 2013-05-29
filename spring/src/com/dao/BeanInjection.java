@@ -8,4 +8,9 @@ public class BeanInjection {
 	}
 	
 
+ public String getMessage(){
+	 return "Hello MR";
+ }
+ 
+ 
 }
