@@ -1,4 +1,4 @@
-package unitTestCase;
+package org.unitTestCase;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -10,19 +10,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.dao.BeanInjection;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(locations = {"/applicationContext.xml"})
 public class TestbeanInjection {
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
     @Autowired
-
     private BeanInjection message = null; 
     
     @Test
