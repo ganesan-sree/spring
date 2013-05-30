@@ -93,18 +93,18 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="logAspect" class="com.aop.aspectJ.LoggingAspect" />
 			
 	<!-- Type-I  annotation  refer class com.aop.aspectJ.LoggingAspect-->
-		<!-- 	<aop:aspectj-autoproxy />	 -->
+			<aop:aspectj-autoproxy />	
 		
 		
 	<!-- Type-II -->
 	
-<aop:config>
-	<aop:aspect id="aspectLoggging" ref="logAspect">
-		<aop:pointcut id="pointCutExp"	expression="execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomer(..))" />
-		<aop:before method="logBefore" pointcut="within(com.aop.aspectJ.customer.bo..*)"/>
-		<aop:after method="logAfter" pointcut-ref="pointCutExp" />
+<!-- <aop:config> -->
+<!-- 	<aop:aspect id="aspectLoggging" ref="logAspect"> -->
+<!-- 		<aop:pointcut id="pointCutExp"	expression="execution(* com.aop.aspectJ.customer.bo.CustomerBo.addCustomer(..))" /> -->
+<!-- 		<aop:before method="logBefore" pointcut="within(com.aop.aspectJ.customer.bo..*)"/> -->
+<!-- 		<aop:after method="logAfter" pointcut-ref="pointCutExp" /> -->
 		
-	</aop:aspect>
-</aop:config>
+<!-- 	</aop:aspect> -->
+<!-- </aop:config> -->
 	
 </beans>

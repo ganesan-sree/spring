@@ -10,6 +10,7 @@ public class HijackAroundMethod implements MethodInterceptor {
 
 		System.out.println("Method name : "	+ methodInvocation.getMethod().getName());
 		System.out.println("Method arguments : "+ Arrays.toString(methodInvocation.getArguments()));
+		
 		// same with MethodBeforeAdvice
 		System.out.println("HijackAroundMethod : Before method hijacked!");
 
@@ -18,7 +19,7 @@ public class HijackAroundMethod implements MethodInterceptor {
 			Object result = methodInvocation.proceed();
 			// same with AfterReturningAdvice
 			System.out.println("HijackAroundMethod : After method hijacked!");
-
+			System.out.println(result);
 			return result;
 
 		} catch (IllegalArgumentException e) {
