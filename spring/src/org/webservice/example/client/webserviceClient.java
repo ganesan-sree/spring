@@ -7,7 +7,7 @@ import javax.xml.ws.Service;
 
 import org.webservice.example.ApacheCxfWebservice;
 
-public class webserviceClient {
+public class webserviceClient  {
 
 	public static void main(String[] args) throws Exception {
 
