@@ -22,9 +22,14 @@
 	<!-- </property> -->
 	<!-- </bean> -->
 
-
+   <bean class="com.bean.postProcessor.InitHelloWorld" />
+      <bean id="helloWorldinitdestro" class="com.bean.postProcessor.HelloWorld"
+       init-method="init" destroy-method="destroy">
+       <property name="message" value="Hello World!"/>
+   </bean>
+   
 	
-	<import resource="datasource.xml" />
+<!-- 	<import resource="datasource.xml" /> -->
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
