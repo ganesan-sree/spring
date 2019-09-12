@@ -1,7 +1,7 @@
 <project name="default-configs">
 
 	<!-- BASEPATH IS THE PATH TO WORKSPACE AND IS THE ONLY VARIABLE YOU SHOULD MODIFY -->
-	<property name="basepath" value="/home/ganesan/"/>
+<!--	<property name="basepath" value="/home/ganesan/"/>-->
 	<property name="basepath" value="/home/ganesh/"/>
 		
 	<!-- location of source code to be compiled -->	

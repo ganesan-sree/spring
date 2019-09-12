@@ -86,65 +86,65 @@
   
   <!--  AbstractWizardFormController(Mutiple form manager) http://192.168.1.230:8080/spring/abs/wiz/welcome-abs.htm -->
   
-    <servlet>
-  	<servlet-name>AbstractWizardFormController-dispatcher</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
+<!--     <servlet> -->
+<!--   	<servlet-name>AbstractWizardFormController-dispatcher</servlet-name> -->
+<!--     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+<!--     <load-on-startup>1</load-on-startup> -->
+<!--   </servlet> -->
   
-  <servlet-mapping>
- 	<servlet-name>AbstractWizardFormController-dispatcher</servlet-name>
-    <url-pattern>/abs/wiz/*</url-pattern>
-  </servlet-mapping>
+<!--   <servlet-mapping> -->
+<!--  	<servlet-name>AbstractWizardFormController-dispatcher</servlet-name> -->
+<!--     <url-pattern>/abs/wiz/*</url-pattern> -->
+<!--   </servlet-mapping> -->
 
 
   
   <!-- AOP   http://192.168.1.230:8080/spring/aop/controller,http://192.168.1.230:8080/spring/aop/aspectJcontroller  -->
-  <servlet>
-		<servlet-name>aop</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>aop</servlet-name>
-		<url-pattern>/aop/*</url-pattern>
-	</servlet-mapping>
+<!--   <servlet> -->
+<!-- 		<servlet-name>aop</servlet-name> -->
+<!-- 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+<!-- 		<load-on-startup>1</load-on-startup> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>aop</servlet-name> -->
+<!-- 		<url-pattern>/aop/*</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 	
 	
 	 <!-- Expresion Languauge  http://192.168.1.230:8080/spring/el/controller -->
-  <servlet>
-		<servlet-name>el-dispatch</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>el-dispatch</servlet-name>
-		<url-pattern>/el/*</url-pattern>
-	</servlet-mapping>
+<!--   <servlet> -->
+<!-- 		<servlet-name>el-dispatch</servlet-name> -->
+<!-- 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+<!-- 		<load-on-startup>1</load-on-startup> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>el-dispatch</servlet-name> -->
+<!-- 		<url-pattern>/el/*</url-pattern> -->
+<!-- 	</servlet-mapping> -->
   
-  <!-- Task (User master,login)  http://192.168.1.230:8080/spring/task/login -->
-   <servlet>
-		<servlet-name>task-dispatcher</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>task-dispatcher</servlet-name>
-		<url-pattern>/task/*</url-pattern>
-	</servlet-mapping>
+<!--   Task (User master,login)  http://192.168.1.230:8080/spring/task/login --> 
+<!--    <servlet> -->
+<!-- 		<servlet-name>task-dispatcher</servlet-name> -->
+<!-- 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+<!-- 		<load-on-startup>1</load-on-startup> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>task-dispatcher</servlet-name> -->
+<!-- 		<url-pattern>/task/*</url-pattern> -->
+<!-- 	</servlet-mapping> -->
   
   
-  <!-- http://192.168.1.230:8080/spring/tiles/welcome.htm -->
+<!--   http://192.168.1.230:8080/spring/tiles/welcome.htm --> 
   
-   <servlet>
-        <servlet-name>tiles</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>tiles</servlet-name>
-        <url-pattern>/tiles/*</url-pattern>
-    </servlet-mapping>
+<!--    <servlet> -->
+<!--         <servlet-name>tiles</servlet-name> -->
+<!--         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+<!--         <load-on-startup>1</load-on-startup> -->
+<!--     </servlet> -->
+<!--     <servlet-mapping> -->
+<!--         <servlet-name>tiles</servlet-name> -->
+<!--         <url-pattern>/tiles/*</url-pattern> -->
+<!--     </servlet-mapping> -->
 
 
 
